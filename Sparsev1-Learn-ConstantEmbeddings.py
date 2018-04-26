@@ -4,7 +4,7 @@
 # In[1]:
 
 ###el bueno
-import scipy.io
+#import scipy.io
 import numpy
 
 import torchtext
@@ -84,19 +84,34 @@ for predicate in range(num_predicates):
                 else:
                     knowledge_neg = torch.cat((knowledge_neg, fact) , 0)
                 
-knowledge_pos = Variable(knowledge_pos.narrow(0, 1, knowledge_pos.size()[0]-1))
-knowledge_neg = Variable(knowledge_neg.narrow(0, 1, knowledge_neg.size()[0]-1))
+knowledge_pos = knowledge_pos.narrow(0, 1, knowledge_pos.size()[0]-1)
+knowledge_neg = knowledge_neg.narrow(0, 1, knowledge_neg.size()[0]-1)
 
 print(knowledge_pos)
 print(knowledge_neg)
 print(num_feat_facts)
  
+_,rules_aux= torch.max(knowledge_pos[:,:2],1)
+_,obj_aux= torch.max(knowledge_pos[:,2:16],1)
+_,subj_aux= torch.max(knowledge_pos[:,16:],1)
+data_aux = torch.cat((rules_aux.view(-1,1), obj_aux.view(-1,1), subj_aux.view(-1,1)),1)
 
+#####core 7 identities, 7 properties, 6 core_rel
+core_indices = torch.LongTensor([0,2,4,7,10,13,16,17,19,21,24,27,30,33,1,3,6,9,12,15])
+noncore_indices = torch.LongTensor([5,8,11,14,18,20,22,23,25,26,28,29,31,32])
+#print(torch.index_select(aux, 0, torch.LongTensor([0,5])))s
+#knowledge_core = torch.index_select(data_aux, 0, core_indices)
+#knowledge_noncore = torch.index_select(data_aux, 0, noncore_indices)
+knowledge_core = torch.index_select(knowledge_pos, 0, core_indices)
+knowledge_noncore = torch.index_select(knowledge_pos, 0, noncore_indices)
+knowledge_order = torch.cat((knowledge_core, knowledge_noncore),0)
+
+#print(knowledge_order)
 
 
 # In[ ]:
 
-def read(state):
+#def read(state):
 
 
 # In[5]:
@@ -111,11 +126,14 @@ def forward_step(facts):
                 p = p*F.cosine_similarity(rule[num_predicates:2*num_predicates].view(1,-1), fact1[:num_predicates].view(1,-1))
                 p = p*F.cosine_similarity(rule[2*num_predicates:3*num_predicates].view(1,-1), fact2[:num_predicates].view(1,-1))
                 p = p*F.cosine_similarity(fact1[num_predicates+num_constants:-1].view(1,-1) , fact2[num_predicates:num_predicates+num_constants].view(1,-1))
-                new_fact = torch.cat((rule[:num_predicates], fact1[num_predicates:num_predicates+num_constants],                                                               fact2[num_predicates+num_constants:-1], p), 0)
-                new_facts = torch.cat(( new_facts, new_fact.view(1,-1) ),0)
+                new_fact = torch.cat((rule[:num_predicates], fact1[num_predicates:num_predicates+num_constants],\
+                                                             fact2[num_predicates+num_constants:-1], p), 0)
+                if torch.max(F.cosine_similarity(new_fact.view(1,-1).expand(new_facts.size()),new_facts)).data[0] < 0.85: 
+                    new_facts = torch.cat(( new_facts, new_fact.view(1,-1) ),0)
+    #pdb.set_trace()
     _ , index = torch.topk(new_facts[:,-1], K)
+    index, _ = torch.sort(index)
     new_facts = torch.index_select(new_facts, 0, index)
-    #pdb.set_trace()            
     #new_facts = torch.topk(new_facts, K, dim = new_facts.size()[1])            
     return new_facts
         
@@ -124,11 +142,13 @@ def forward_step(facts):
 
 # In[6]:
 
-num_iters = 1000
+num_iters = 6000
 learning_rate = .001
 steps = 2
 hidden_size_decoder = 500
 num_rules = 2
+num_core = 7+7+6
+epsilon=.001
 
 K = 34 ##For top K
 
@@ -138,125 +158,60 @@ K = 34 ##For top K
 ## 1 has_is per object---7 ground facts:
 ## animal breathes, bird flies, fish swims, canary sings, eagle claws, shark bites, salmon pink
 
-core_rel = Variable(torch.rand(13, num_feat_facts), requires_grad=True)
 
-#rules = Variable(torch.rand(num_rules, num_predicates*3), requires_grad=True)
-
+core_rel = Variable(torch.rand(num_core, num_feat_facts), requires_grad=True)
+#core_rel = Variable(knowledge_order.narrow(0,0,num_core), requires_grad=True)
 
 #embeddings = Variable(torch.eye(num_predicates), requires_grad=True)
 #embeddings = Variable(torch.rand(num_predicates, num_feat), requires_grad=True)
-rule1 = torch.Tensor([1,0,1,0,1,0]).view(1,-1)
-rule2 = torch.Tensor([0,1,1,0,0,1]).view(1,-1)
-rules = Variable(torch.cat((rule1,rule2),0), requires_grad=True)
+#rule1 = torch.Tensor([1,0,1,0,1,0]).view(1,-1)
+#rule2 = torch.Tensor([0,1,1,0,0,1]).view(1,-1)
+#rules = Variable(torch.cat((rule1,rule2),0), requires_grad=True)
+rules = Variable(torch.rand(num_rules,3*num_rules), requires_grad=True)
 
 optimizer = torch.optim.Adam([
-        #{'params': [rules]},
+        {'params': [rules]},
         {'params': [core_rel]}
     ], lr = learning_rate)
 
 criterion = torch.nn.MSELoss(size_average=False)
 
-
+target = Variable(knowledge_order)
 for epoch in range(num_iters):
+    #pdb.set_trace()
     optimizer.zero_grad()
-    facts = torch.cat((core_rel, Variable(torch.ones(13).view(13,1))), 1)
+    facts = torch.cat((core_rel, Variable(torch.ones(core_rel.size()[0], 1))), 1)
     #print('epoch {} before_decoder'.format(epoch), facts)
-        
+    #pdb.set_trace()    
     for step in range(steps):
         facts = forward_step(facts)
         #if epoch % 39 == 0 and epoch>0 :
             #print('epoch {}, step {}'.format(epoch,step+1), valuation)
     
-    
-    loss = criterion(facts[:,:-1], knowledge_pos)
+    ####Separate loss into order core_relation, and not ordered rest of the relations
+    #pdb.set_trace()
+    loss = criterion(facts[:num_core,:-1], target[:num_core,:])
+    #loss = Variable(torch.Tensor([0]))
+    for targ in target[num_core:,:]:
+	_, indi = torch.max(F.cosine_similarity(targ.view(1,-1).expand(facts[num_core:,:-1].size()),facts[num_core:,:-1]),0)
+        indi=indi.data[0]
+        #print(facts[num_core+indi,-1])
+      
+        loss += criterion(facts[num_core+indi,:-1],targ)/(facts[num_core+indi,-1]+epsilon) 
     print(epoch, 'losssssssssssssssssssss',loss.data[0])
     #pdb.set_trace()
     loss.backward()
     optimizer.step()
-    print(core_rel)
+    #print(core_rel)
 
 #data[0,6,0],data[1,6,0],data[1,6,2],data[1,6,6] = 0,0,0,0
 # Knows: salmon is fish, salmon is salmon
-
+pdb.set_trace()
 
 
 
 # In[ ]:
 
 print(embeddings)
-print(rules)
-
-rules_aux = torch.cat((rules[:,:num_feat],rules[:,num_feat:2*num_feat],rules[:,2*num_feat:3*num_feat]),0)
-rules_aux = rules_aux.repeat(num_predicates,1)
-embeddings_aux = embeddings.repeat(1,num_rules*3).view(-1,num_feat)
-
-
-unifs_real = F.cosine_similarity(embeddings_aux, rules_aux).view(num_predicates,-1)
-print('aaaaa',unifs_real)
-#print('oooo',F.pairwise_distance(embeddings_aux, rules_aux).view(num_predicates,-1))
-
-unifs = F.pairwise_distance(embeddings_aux, rules_aux).view(num_predicates,-1)
-unifs = torch.exp(-unifs)
-#print(unifs)
-unifs_sum = torch.sum(unifs, 0)
-unifs= unifs/unifs_sum
-print('finaaaal',unifs)
-
-
-# In[ ]:
-
-rules[0][0]
-
-
-# In[ ]:
-
-def decoder_efficient(valuation):
-
-    ##Unifications
-    rules_aux = torch.cat((rules[:,:num_feat],rules[:,num_feat:2*num_feat],rules[:,2*num_feat:3*num_feat]),0)
-    rules_aux = rules_aux.repeat(num_predicates,1)
-    embeddings_aux = embeddings.repeat(1,num_rules*3).view(-1,num_feat)
-    #embeddings_aux = F.dropout(embeddings_aux, p=.1,training=True)
-    #rules_aux = F.dropout(rules_aux, p=.1, training=True)
-
-    unifs = F.cosine_similarity(embeddings_aux, rules_aux).view(num_predicates,-1)
-    
-    #unifs = F.pairwise_distance(embeddings_aux, rules_aux).view(num_predicates,-1)
-    #unifs = torch.exp(-unifs)
-    #unifs_sum = torch.sum(unifs, 0)
-    #unifs= unifs/unifs_sum
-    
-    #unifs=Variable(torch.Tensor([[1,0,1,1,1,0],[0,1,0,0,0,1]]))
-
-
-    valuation_new = Variable(torch.Tensor(valuation.size()))
-    for predicate in intensional_predicates:
-        for s in range(num_subjects):
-            for o in range(num_objects):
-                valuation_aux = Variable(torch.Tensor([0]))
-                for body1 in range(num_predicates):
-                    for body2 in range(num_predicates):
-                        num = torch.min(valuation[body1][s,:],valuation[body2][:,o])
-                        num = torch.max(num)
-
-                        ## max across three rules
-                        new = Variable(torch.Tensor([0]))
-                        for rule in range(num_rules): 
-                            unif = unifs[predicate][rule]*unifs[body1][num_rules+rule]*unifs[body2][2*num_rules+rule]
-                            new = torch.max(new,unif)
-                            #could be amalgamate
-
-                        num = num*new 
-                        
-                        valuation_aux = amalgamate(valuation_aux, num)
-                        
-                        #if predicate == 0 and s==1 and o==1 and valuation_aux.data[0]>.3:
-                        #    print('body1', body1, 'body2', body2)
-
-                valuation_new[predicate,s,o] = amalgamate(valuation[predicate,s,o], valuation_aux)
-
-    return valuation_new
-    
 def amalgamate(x,y):
     return x + y - x*y
-
