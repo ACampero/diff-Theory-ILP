@@ -117,6 +117,7 @@ knowledge_order = torch.cat((knowledge_core, knowledge_noncore),0)
 # In[5]:
 
 def forward_step(facts):
+    #facts = F.dropout(facts, p=.1)
     new_facts = facts.clone()
     for rule in rules:
         for fact1 in facts:
@@ -128,7 +129,7 @@ def forward_step(facts):
                 p = p*F.cosine_similarity(fact1[num_predicates+num_constants:-1].view(1,-1) , fact2[num_predicates:num_predicates+num_constants].view(1,-1))
                 new_fact = torch.cat((rule[:num_predicates], fact1[num_predicates:num_predicates+num_constants],\
                                                              fact2[num_predicates+num_constants:-1], p), 0)
-                if torch.max(F.cosine_similarity(new_fact.view(1,-1).expand(new_facts.size()),new_facts)).data[0] < 0.85: 
+                if torch.max(F.cosine_similarity(new_fact.view(1,-1).expand(new_facts.size()),new_facts)).data[0] < 0.9: 
                     new_facts = torch.cat(( new_facts, new_fact.view(1,-1) ),0)
     #pdb.set_trace()
     _ , index = torch.topk(new_facts[:,-1], K)
@@ -142,7 +143,7 @@ def forward_step(facts):
 
 # In[6]:
 
-num_iters = 6000
+num_iters = 1500
 learning_rate = .001
 steps = 2
 hidden_size_decoder = 500
@@ -177,6 +178,8 @@ optimizer = torch.optim.Adam([
 criterion = torch.nn.MSELoss(size_average=False)
 
 target = Variable(knowledge_order)
+target_neg = Variable(knowledge_neg)
+lambda_neg = 1.
 for epoch in range(num_iters):
     #pdb.set_trace()
     optimizer.zero_grad()
@@ -197,7 +200,17 @@ for epoch in range(num_iters):
         indi=indi.data[0]
         #print(facts[num_core+indi,-1])
       
-        loss += criterion(facts[num_core+indi,:-1],targ)/(facts[num_core+indi,-1]+epsilon) 
+        loss += criterion(facts[num_core+indi,:-1],targ)/(facts[num_core+indi,-1]+epsilon)
+
+    ##### Negative_loss 
+    loss_neg = Variable(torch.Tensor([0]))
+    for targ in target_neg:
+        simi, indi = torch.max(F.cosine_similarity(targ.view(1,-1).expand(facts[:,:-1].size()),facts[:,:-1]),0)
+        if simi.data[0] > .85:
+            loss_neg += simi
+    
+    loss += lambda_neg*loss_neg
+
     print(epoch, 'losssssssssssssssssssss',loss.data[0])
     #pdb.set_trace()
     loss.backward()
