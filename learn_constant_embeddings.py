@@ -1,12 +1,5 @@
-
-# coding: utf-8
-
-# In[1]:
-
 ###el bueno
-#import scipy.io
 import numpy
-
 import torchtext
 import torch
 from torch.autograd import Variable
@@ -16,13 +9,11 @@ import torch.nn.functional as F
 import pdb
 from copy import deepcopy
 
-
-# In[2]:
-
 ##DATA
-#predicates: is_a, has_a
-#subjects: (animal,bird, fish, canary, eagle, shark, salmon)
-#objects: (breathes, can fly, can swim, can sing, has claws, can bite, is pink)
+
+##predicates: is_a, has_a
+##subjects: (animal,bird, fish, canary, eagle, shark, salmon)
+##objects: (breathes, can fly, can swim, can sing, has claws, can bite, is pink)
 data = torch.Tensor(2,7,7).zero_()
 ##is_a
 data[0,:,:7] = torch.eye(7)
@@ -41,36 +32,16 @@ data[1,3:,3:] = torch.eye(4)
 
 #data[0,6,0],data[0,6,2],data[1,6,6] = 0,0,0  #It knows [1,6,2],[1,6,0] ... salmon can swim and breathe
 
-##Auxiliar, very small
-#data = torch.Tensor(2,2,2)
-#data[0,:,:] = torch.eye(2,2)
-#data[0,1,0] = 1
-#data[1,:,0]= torch.Tensor([1,1])
-
-
-
-
-#num_predicates = data.size()[0]
-#num_subjects = data.size()[1]
-#num_objects = data.size()[2]
-
-
-
-
-
-# In[4]:
-
 num_objects = 7
 num_subjects = 7
 num_constants = num_objects + num_subjects
 num_predicates = 2
-threshold = .1
 
+##one-hot vectors
 constants = torch.eye(num_constants)
 predicates = torch.eye(num_predicates)
 
 num_feat_facts = predicates.size()[1] + 2*constants.size()[1]
-
 knowledge_pos = torch.zeros([1, num_feat_facts])
 knowledge_neg = torch.zeros([1, num_feat_facts])
 
@@ -86,36 +57,27 @@ for predicate in range(num_predicates):
                 
 knowledge_pos = knowledge_pos.narrow(0, 1, knowledge_pos.size()[0]-1)
 knowledge_neg = knowledge_neg.narrow(0, 1, knowledge_neg.size()[0]-1)
-
-print(knowledge_pos)
-print(knowledge_neg)
-print(num_feat_facts)
  
 _,rules_aux= torch.max(knowledge_pos[:,:2],1)
 _,obj_aux= torch.max(knowledge_pos[:,2:16],1)
 _,subj_aux= torch.max(knowledge_pos[:,16:],1)
 data_aux = torch.cat((rules_aux.view(-1,1), obj_aux.view(-1,1), subj_aux.view(-1,1)),1)
 
-#####core 7 identities, 7 properties, 6 core_rel
+#####There are 20 Core relations: 7 tautologies, 
+##7 properties(animals breath, bird flies, fish swims, canary sings, eagle claws, shark bites, salmon pink),
+## 6 cores (canary,eagles are birds; shark salmons are fishs; fish,birds are animals)
+num_core = 7+7+6
+
 core_indices = torch.LongTensor([0,2,4,7,10,13,16,17,19,21,24,27,30,33,1,3,6,9,12,15])
 noncore_indices = torch.LongTensor([5,8,11,14,18,20,22,23,25,26,28,29,31,32])
-#print(torch.index_select(aux, 0, torch.LongTensor([0,5])))
 #knowledge_core = torch.index_select(data_aux, 0, core_indices)
 #knowledge_noncore = torch.index_select(data_aux, 0, noncore_indices)
 knowledge_core = torch.index_select(knowledge_pos, 0, core_indices)
 knowledge_noncore = torch.index_select(knowledge_pos, 0, noncore_indices)
 knowledge_order = torch.cat((knowledge_core, knowledge_noncore),0)
 
-#print(knowledge_order)
 
-
-# In[ ]:
-
-#def read(state):
-
-
-# In[5]:
-
+####FORWARD CHAINING
 def forward_step(facts,drop,training):
     facts = F.dropout(facts, p=drop, training=training)
     new_facts = facts.clone()
@@ -135,19 +97,13 @@ def forward_step(facts,drop,training):
                     new_facts = torch.cat(( new_facts, new_fact.view(1,-1) ),0)
                 elif p.data[0] > new_facts[indi_prev.data[0],-1].data[0]:
                     new_facts[indi_prev.data[0]] = new_fact
-                    
-    #pdb.set_trace()
+
     _ , index = torch.topk(new_facts[:,-1], K)
     index, _ = torch.sort(index)
     new_facts = torch.index_select(new_facts, 0, index)
-    #new_facts = torch.topk(new_facts, K, dim = new_facts.size()[1])            
     return new_facts
         
-            
-
-
-# In[6]:
-
+####TRAINING
 num_iters = 200
 learning_rate = .1
 lambda_neg = 20.
@@ -155,17 +111,9 @@ drop=0
 
 steps = 2
 num_rules = 2
-num_core = 7+7+6
 epsilon=.001
 
 K = 34 ##For top K
-
-#Core Relations:
-## Tree of animals---6 ground facts:
-#canary, eagle are birds. shark salmon are fishs. fishs,birds are animals
-## 1 has_is per object---7 ground facts:
-## animal breathes, bird flies, fish swims, canary sings, eagle claws, shark bites, salmon pink
-
 
 #core_rel = Variable(knowledge_order.narrow(0,0,num_core), requires_grad=True)
 core_rel = Variable(torch.rand(num_core, num_feat_facts), requires_grad=True)
@@ -186,6 +134,7 @@ target = Variable(knowledge_order)
 target_neg = Variable(knowledge_neg)
 
 for epoch in range(num_iters):
+    ##For dropout only
     training = True
     if epoch == num_iters-1:
         training= False
@@ -210,27 +159,22 @@ for epoch in range(num_iters):
     #    if simi.data[0] > .85:
     #        print('neg_simi', indi)
     #        loss_neg += simi
-    
     #loss += lambda_neg*loss_neg
+
     print(epoch, 'losssssssssssssssssssss',loss.data[0])
     loss.backward()
     optimizer.step()
-    #pdb.set_trace()
 
-####
+#### VISUALIZE LEARNED FACTS and RULES
 _,rules_aux= torch.max(facts[:,:2],1)
 _,obj_aux= torch.max(facts[:,2:16],1)
 _,subj_aux= torch.max(facts[:,16:-1],1)
 data_aux = torch.cat((rules_aux.view(-1,1), obj_aux.view(-1,1), subj_aux.view(-1,1)),1)
 data_aux = torch.cat((data_aux.type(torch.FloatTensor),facts[:,-1].contiguous().view(-1,1)),1)
+print('rules', rules)
 print('facts',data_aux)
 
 pdb.set_trace()
 
-
-
-# In[ ]:
-
-print(embeddings)
 def amalgamate(x,y):
     return x + y - x*y
