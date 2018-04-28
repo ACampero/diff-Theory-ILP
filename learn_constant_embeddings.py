@@ -130,11 +130,13 @@ def forward_step(facts,drop,training):
                 new_fact = torch.cat((rule[:num_predicates], fact1[num_predicates:num_predicates+num_constants],\
                                                              fact2[num_predicates+num_constants:-1], p), 0)
           
-    
-
-            if torch.max(F.cosine_similarity(new_fact[:-1].view(1,-1).expand(new_facts[:,:-1].size()),new_facts[:,:-1])).data[0] < 0.9: 
+                max_prev, indi_prev = torch.max(F.cosine_similarity(new_fact[:-1].view(1,-1).expand(new_facts[:,:-1].size()),new_facts[:,:-1]),0)
+                if max_prev.data[0] < 0.9: 
                     new_facts = torch.cat(( new_facts, new_fact.view(1,-1) ),0)
-    pdb.set_trace()
+                elif p.data[0] > new_facts[indi_prev.data[0],-1].data[0]:
+                    new_facts[indi_prev.data[0]] = new_fact
+                    
+    #pdb.set_trace()
     _ , index = torch.topk(new_facts[:,-1], K)
     index, _ = torch.sort(index)
     new_facts = torch.index_select(new_facts, 0, index)
@@ -146,13 +148,12 @@ def forward_step(facts,drop,training):
 
 # In[6]:
 
-num_iters = 500
+num_iters = 200
+learning_rate = .1
 lambda_neg = 20.
 drop=0
 
-learning_rate = .001
 steps = 2
-hidden_size_decoder = 500
 num_rules = 2
 num_core = 7+7+6
 epsilon=.001
@@ -166,17 +167,17 @@ K = 34 ##For top K
 ## animal breathes, bird flies, fish swims, canary sings, eagle claws, shark bites, salmon pink
 
 
-#core_rel = Variable(torch.rand(num_core, num_feat_facts), requires_grad=True)
-core_rel = Variable(knowledge_order.narrow(0,0,num_core), requires_grad=True)
+#core_rel = Variable(knowledge_order.narrow(0,0,num_core), requires_grad=True)
+core_rel = Variable(torch.rand(num_core, num_feat_facts), requires_grad=True)
 
-rule1 = torch.Tensor([1,0,1,0,1,0]).view(1,-1)
-rule2 = torch.Tensor([0,1,1,0,0,1]).view(1,-1)
-rules = Variable(torch.cat((rule1,rule2),0), requires_grad=True)
-#rules = Variable(torch.rand(num_rules,3*num_rules), requires_grad=True)
+#rule1 = torch.Tensor([1,0,1,0,1,0]).view(1,-1)
+#rule2 = torch.Tensor([0,1,1,0,0,1]).view(1,-1)
+#rules = Variable(torch.cat((rule1,rule2),0), requires_grad=True)
+rules = Variable(torch.rand(num_rules,3*num_rules), requires_grad=True)
 
 optimizer = torch.optim.Adam([
-        {'params': [rules]}
-        #{'params': [core_rel]}
+        {'params': [rules]},
+        {'params': [core_rel]}
     ], lr = learning_rate)
 
 criterion = torch.nn.MSELoss(size_average=False)
@@ -203,18 +204,18 @@ for epoch in range(num_iters):
         loss += criterion(facts[num_core+indi,:-1],targ)/(facts[num_core+indi,-1]+epsilon)
 
     ##### Negative_loss 
-    loss_neg = Variable(torch.Tensor([0]))
-    for targ in target_neg:
-        simi, indi = torch.max(F.cosine_similarity(targ.view(1,-1).expand(facts[:,:-1].size()),facts[:,:-1]),0)
-        if simi.data[0] > .85:
-            print('neg_simi', indi)
-            loss_neg += simi
+    #loss_neg = Variable(torch.Tensor([0]))
+    #for targ in target_neg:
+    #    simi, indi = torch.max(F.cosine_similarity(targ.view(1,-1).expand(facts[:,:-1].size()),facts[:,:-1]),0)
+    #    if simi.data[0] > .85:
+    #        print('neg_simi', indi)
+    #        loss_neg += simi
     
-    loss += lambda_neg*loss_neg
+    #loss += lambda_neg*loss_neg
     print(epoch, 'losssssssssssssssssssss',loss.data[0])
     loss.backward()
     optimizer.step()
-    pdb.set_trace()
+    #pdb.set_trace()
 
 ####
 _,rules_aux= torch.max(facts[:,:2],1)
