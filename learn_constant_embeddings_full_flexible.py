@@ -52,8 +52,8 @@ def generate_target(predicates, constants):
     ##7 properties(animals breath, bird flies, fish swims, canary sings, eagle claws, shark bites, salmon pink),
     ## 6 cores (canary,eagles are birds; shark salmons are fishs; fish,birds are animals)
 
-    #core_indices = Variable(torch.LongTensor([0,2,4,7,10,13,16,17,19,21,24,27,30,33,1,3,6,9,12,15]))
-    #noncore_indices = Variable(torch.LongTensor([5,8,11,14,18,20,22,23,25,26,28,29,31,32]))
+    core_indices = Variable(torch.LongTensor([0,2,4,7,10,13,16,17,19,21,24,27,30,33,1,3,6,9,12,15]))
+    noncore_indices = Variable(torch.LongTensor([5,8,11,14,18,20,22,23,25,26,28,29,31,32]))
     #sparse_core=0
 
     ##For Sparse
@@ -68,12 +68,12 @@ def generate_target(predicates, constants):
     #noncore_indices = torch.LongTensor([5,8,11,18,20,22,23,25,26,28,29,31,32])
     #sparse_core = 1
 
-    #knowledge_core = torch.index_select(knowledge_pos, 0, core_indices)
-    #knowledge_noncore = torch.index_select(knowledge_pos, 0, noncore_indices)
-    #knowledge_order = torch.cat((knowledge_core, knowledge_noncore),0)
+    knowledge_core = torch.index_select(knowledge_pos, 0, core_indices)
+    knowledge_noncore = torch.index_select(knowledge_pos, 0, noncore_indices)
+    knowledge_order = torch.cat((knowledge_core, knowledge_noncore),0)
 
     #num_core = knowledge_core.size()[0] 
-    return knowledge_pos, knowledge_neg 
+    return knowledge_order, knowledge_neg 
 
 def visualize_facts(facts, predicates, constants):
     visualize = Variable(torch.LongTensor([100,100,100]).view(1,-1)) #to be errased 6 lines below
@@ -140,19 +140,23 @@ epsilon=.001
 K = 50 ##For top K
 num_core = 20
 
-core_rel = Variable(knowledge_order.narrow(0,0,num_core).data, requires_grad=True)
-#core_rel = Variable(torch.rand(num_core+sparse_core, num_feat_facts), requires_grad=True)
 
-rule1 = torch.Tensor([1,0,1,0,1,0]).view(1,-1)
-rule2 = torch.Tensor([0,1,1,0,0,1]).view(1,-1)
-rules = Variable(torch.cat((rule1,rule2),0), requires_grad=True)
-#rules = Variable(torch.rand(num_rules,3*num_rules), requires_grad=True)
 
 ###Embeddings
 #constants = Variable(torch.eye(num_constants), requires_grad=True)
 #predicates = Variable(torch.eye(num_predicates), requires_grad=True)
 constants = Variable(torch.rand(14,num_constants), requires_grad=True)
 predicates = Variable(torch.rand(2,num_predicates), requires_grad=True)
+knowledge_order, _ = generate_target(predicates, constants) 
+
+core_rel = Variable(knowledge_order.narrow(0,0,num_core).data, requires_grad=True)
+#core_rel = Variable(torch.rand(num_core+sparse_core, num_feat_facts), requires_grad=True)
+
+pdb.set_trace()
+rule1 = torch.Tensor([1,0,1,0,1,0]).view(1,-1)
+rule2 = torch.Tensor([0,1,1,0,0,1]).view(1,-1)
+rules = Variable(torch.cat((rule1,rule2),0), requires_grad=True)
+#rules = Variable(torch.rand(num_rules,3*num_rules), requires_grad=True)
 
 optimizer = torch.optim.Adam([
         #{'params': [rules]},
