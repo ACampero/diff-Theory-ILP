@@ -31,65 +31,60 @@ num_subjects = 7
 num_constants = num_objects + num_subjects
 num_predicates = 2
 
-###Embeddings
-#constants = Variable(torch.eye(num_constants), requires_grad=True)
-#predicates = Variable(torch.eye(num_predicates), requires_grad=True)
-constants = Variable(torch.rand(14,num_constants), requires_grad=True)
-predicates = Variable(torch.rand(2,num_predicates), requires_grad=True)
 
-
-
-num_feat_predicates= predicates.size()[1]
-num_feat_constants = constants.size()[1]
-num_feat_facts = predicates.size()[1] + 2*constants.size()[1]
-
-knowledge_pos = torch.cat((predicates[0].view(1,-1), constants[0].view(1,-1), constants[0].view(1,-1)), 1)   ##will be erased
-knowledge_neg = torch.cat((predicates[0].view(1,-1), constants[0].view(1,-1), constants[0].view(1,-1)), 1)        ##will be erased
-
-
-for predicate in range(num_predicates):
-    for obj in range(num_constants):
-        for subj in range(num_constants):
-            fact = torch.cat((predicates[predicate].view(1,-1), constants[obj].view(1,-1), constants[subj].view(1,-1)), 1)
-            if obj<num_objects and ((predicate == 0  and subj<7) or (predicate == 1 and subj>=7)):
-                if data[predicate, obj, subj%7] == 1:
-                    knowledge_pos = torch.cat((knowledge_pos, fact) , 0)
+def generate_target(predicates, constants):
+    knowledge_pos = torch.cat((predicates[0].view(1,-1), constants[0].view(1,-1), constants[0].view(1,-1)), 1)   ##will be erased
+    knowledge_neg = torch.cat((predicates[0].view(1,-1), constants[0].view(1,-1), constants[0].view(1,-1)), 1)        ##will be erased
+    for predicate in range(num_predicates):
+        for obj in range(num_constants):
+            for subj in range(num_constants):
+                fact = torch.cat((predicates[predicate].view(1,-1), constants[obj].view(1,-1), constants[subj].view(1,-1)), 1)
+                if obj<num_objects and ((predicate == 0  and subj<7) or (predicate == 1 and subj>=7)):
+                    if data[predicate, obj, subj%7] == 1:
+                        knowledge_pos = torch.cat((knowledge_pos, fact) , 0)
+                    else:
+                        knowledge_neg = torch.cat((knowledge_neg, fact) , 0)
                 else:
                     knowledge_neg = torch.cat((knowledge_neg, fact) , 0)
-            else:
-                knowledge_neg = torch.cat((knowledge_neg, fact) , 0)
+    knowledge_pos = knowledge_pos.narrow(0, 1, knowledge_pos.size()[0]-1)
+    knowledge_neg = knowledge_neg.narrow(0, 1, knowledge_neg.size()[0]-1)
+    #####There are 20 Core relations: 7 tautologies, 
+    ##7 properties(animals breath, bird flies, fish swims, canary sings, eagle claws, shark bites, salmon pink),
+    ## 6 cores (canary,eagles are birds; shark salmons are fishs; fish,birds are animals)
 
-                
-knowledge_pos = knowledge_pos.narrow(0, 1, knowledge_pos.size()[0]-1)
-knowledge_neg = knowledge_neg.narrow(0, 1, knowledge_neg.size()[0]-1)
- 
-#####There are 20 Core relations: 7 tautologies, 
-##7 properties(animals breath, bird flies, fish swims, canary sings, eagle claws, shark bites, salmon pink),
-## 6 cores (canary,eagles are birds; shark salmons are fishs; fish,birds are animals)
+    #core_indices = Variable(torch.LongTensor([0,2,4,7,10,13,16,17,19,21,24,27,30,33,1,3,6,9,12,15]))
+    #noncore_indices = Variable(torch.LongTensor([5,8,11,14,18,20,22,23,25,26,28,29,31,32]))
+    #sparse_core=0
 
+    ##For Sparse
+    ###CASE1, Knows Salmon is a fish: infers salmon is animal, salmon breaths, salmon swims
+    ##data[0,6,0]-14,data[1,6,0]-31,data[1,6,2]-32  = 0,0,0, knows [0,6,2]  
+    ##core_indices = torch.LongTensor([0,2,4,7,10,13,16,17,19,21,24,27,30,33,1,3,6,9,12,15])
+    ##noncore_indices = torch.LongTensor([5,8,11,18,20,22,23,25,26,28,29])
 
-core_indices = Variable(torch.LongTensor([0,2,4,7,10,13,16,17,19,21,24,27,30,33,1,3,6,9,12,15]))
-noncore_indices = Variable(torch.LongTensor([5,8,11,14,18,20,22,23,25,26,28,29,31,32]))
-sparse_core=0
+    ###CASE2, Knows Salmon swims and breaths, infers salmon is a fish, salmon is an animal
+    ##data[0,6,0]-14, data[0,6,2]-15 = 0,0,0  knows [1,6,2],[1,6,0]
+    #core_indices = torch.LongTensor([0,2,4,7,10,13,16,17,19,21,24,27,30,33,1,3,6,9,12])
+    #noncore_indices = torch.LongTensor([5,8,11,18,20,22,23,25,26,28,29,31,32])
+    #sparse_core = 1
 
-##For Sparse
-###CASE1, Knows Salmon is a fish: infers salmon is animal, salmon breaths, salmon swims
-##data[0,6,0]-14,data[1,6,0]-31,data[1,6,2]-32  = 0,0,0, knows [0,6,2]  
-##core_indices = torch.LongTensor([0,2,4,7,10,13,16,17,19,21,24,27,30,33,1,3,6,9,12,15])
-##noncore_indices = torch.LongTensor([5,8,11,18,20,22,23,25,26,28,29])
+    #knowledge_core = torch.index_select(knowledge_pos, 0, core_indices)
+    #knowledge_noncore = torch.index_select(knowledge_pos, 0, noncore_indices)
+    #knowledge_order = torch.cat((knowledge_core, knowledge_noncore),0)
 
-###CASE2, Knows Salmon swims and breaths, infers salmon is a fish, salmon is an animal
-##data[0,6,0]-14, data[0,6,2]-15 = 0,0,0  knows [1,6,2],[1,6,0]
-#core_indices = torch.LongTensor([0,2,4,7,10,13,16,17,19,21,24,27,30,33,1,3,6,9,12])
-#noncore_indices = torch.LongTensor([5,8,11,18,20,22,23,25,26,28,29,31,32])
-#sparse_core = 1
+    #num_core = knowledge_core.size()[0] 
+    return knowledge_pos, knowledge_neg 
 
-knowledge_core = torch.index_select(knowledge_pos, 0, core_indices)
-knowledge_noncore = torch.index_select(knowledge_pos, 0, noncore_indices)
-knowledge_order = torch.cat((knowledge_core, knowledge_noncore),0)
-
-num_core = knowledge_core.size()[0] 
-
+def visualize_facts(facts, predicates, constants):
+    visualize = Variable(torch.LongTensor([100,100,100]).view(1,-1)) #to be errased 6 lines below
+    for fact in facts:
+        _,rules_aux = torch.max(F.cosine_similarity(fact[:num_feat_predicates].view(1,-1).expand(predicates.size()),predicates),0)
+        _,obj_aux = torch.max(F.cosine_similarity(fact[num_feat_predicates:num_feat_predicates+num_feat_constants].view(1,-1).expand(constants.size()),constants),0)
+        _,subj_aux = torch.max(F.cosine_similarity(fact[num_feat_predicates+num_feat_constants:num_feat_predicates+2*num_feat_constants].view(1,-1).expand(constants.size()),constants),0)
+        data_aux = torch.cat((rules_aux.view(-1,1), obj_aux.view(-1,1), subj_aux.view(-1,1)),1)    
+        visualize = torch.cat((visualize,data_aux),0)
+    visualize = visualize.narrow(0,1,visualize.size()[0]-1)    
+    return visualize
 
 ####FORWARD CHAINING
 def forward_step(facts,drop,training):
@@ -143,6 +138,7 @@ num_rules = 2
 epsilon=.001
 
 K = 50 ##For top K
+num_core = 20
 
 core_rel = Variable(knowledge_order.narrow(0,0,num_core).data, requires_grad=True)
 #core_rel = Variable(torch.rand(num_core+sparse_core, num_feat_facts), requires_grad=True)
@@ -152,6 +148,12 @@ rule2 = torch.Tensor([0,1,1,0,0,1]).view(1,-1)
 rules = Variable(torch.cat((rule1,rule2),0), requires_grad=True)
 #rules = Variable(torch.rand(num_rules,3*num_rules), requires_grad=True)
 
+###Embeddings
+#constants = Variable(torch.eye(num_constants), requires_grad=True)
+#predicates = Variable(torch.eye(num_predicates), requires_grad=True)
+constants = Variable(torch.rand(14,num_constants), requires_grad=True)
+predicates = Variable(torch.rand(2,num_predicates), requires_grad=True)
+
 optimizer = torch.optim.Adam([
         #{'params': [rules]},
         #{'params': [core_rel]},
@@ -160,27 +162,11 @@ optimizer = torch.optim.Adam([
 
 criterion = torch.nn.MSELoss(size_average=False)
 
-target = knowledge_order
-target_neg = knowledge_neg
-
-##VISUALIZE_NEG
-visualize_neg = Variable(torch.LongTensor([100,100,100]).view(1,-1))
-for fact in target_neg:
-    _,rules_aux = torch.max(F.cosine_similarity(fact[:num_feat_predicates].view(1,-1).expand(predicates.size()),predicates),0)
-    _,obj_aux = torch.max(F.cosine_similarity(fact[num_feat_predicates:num_feat_predicates+num_feat_constants].view(1,-1).expand(constants.size()),constants),0)
-    _,subj_aux = torch.max(F.cosine_similarity(fact[num_feat_predicates+num_feat_constants:].view(1,-1).expand(constants.size()),constants),0)
-    data_aux = torch.cat((rules_aux.view(-1,1), obj_aux.view(-1,1), subj_aux.view(-1,1)),1)
-    visualize_neg = torch.cat((visualize_neg,data_aux),0)
-visualize_neg =	visualize_neg.narrow(0,1,visualize_neg.size()[0]-1)
+num_feat_predicates= predicates.size()[1]
+num_feat_constants = constants.size()[1]
+num_feat_facts = predicates.size()[1] + 2*constants.size()[1]
 
 for epoch in range(num_iters):
-    #print(rules)
-    print(torch.round(rules))
-    ###Generate target
-        
-
-
-
     ##For dropout only
     training = True
     if epoch == num_iters-1:
@@ -191,6 +177,12 @@ for epoch in range(num_iters):
         for param in par['params']:
             param.data.clamp_(min=0.,max=1.)
 
+    print(rules)
+    print(torch.round(rules))
+
+    ###Generate target
+    target, target_neg = generate_target(predicates, constants)         
+
     optimizer.zero_grad()
 
     facts = torch.cat((core_rel, Variable(torch.ones(core_rel.size()[0], 1))), 1)
@@ -198,41 +190,10 @@ for epoch in range(num_iters):
         facts = forward_step(facts, drop, training)
 
     ##### Visualize
-    visualize = Variable(torch.LongTensor([100,100,100]).view(1,-1))
-    for fact in facts:
-        _,rules_aux = torch.max(F.cosine_similarity(fact[:num_feat_predicates].view(1,-1).expand(predicates.size()),predicates),0)
-        _,obj_aux = torch.max(F.cosine_similarity(fact[num_feat_predicates:num_feat_predicates+num_feat_constants].view(1,-1).expand(constants.size()),constants),0)
-        _,subj_aux = torch.max(F.cosine_similarity(fact[num_feat_predicates+num_feat_constants:-1].view(1,-1).expand(constants.size()),constants),0)
-        data_aux = torch.cat((rules_aux.view(-1,1), obj_aux.view(-1,1), subj_aux.view(-1,1)),1)    
-        visualize = torch.cat((visualize,data_aux),0)
-    visualize = visualize.narrow(0,1,visualize.size()[0]-1)
-
-    ####Separate loss into order core_relation, and not ordered rest of the relations
+    visualize = visualize_facts(facts, predicates,constants)
+    visualize_neg = visualize_facts(target_neg, predicates, constants)
     #loss = criterion(facts[:num_core,:-1], target[:num_core,:])
     loss = Variable(torch.Tensor([0]))
-
-
-    ###No repetition
-    for core_indi in range(num_core):
-        auxi =  torch.sum(visualize[core_indi].expand(visualize[:num_core,:].size()) == visualize[:num_core,:],1)
-        auxi[core_indi] = 0
-        equals, facts_indi = torch.max(auxi,0)
-        if equals.data[0] == 3:
-            print("falle")
-            simi = 1-F.mse_loss(facts[core_indi,:-1].view(1,-1),facts[facts_indi.data[0],:-1].view(1,-1))
-            simi = torch.max(simi,Variable(torch.Tensor([0])))
-            loss += lambda_rep*simi
-    
-    ###For Sparse case, just make sure it doesnt repeat:
-    for sparse_indi in range(sparse_core):
-        equals, facts_indi = torch.max(torch.sum(visualize[num_core+sparse_indi].expand(visualize[:num_core,:].size()) == visualize[:num_core,:],1),0)
-        if equals.data[0] == 3:
-            print("falle")
-            simi = 1-F.mse_loss(facts[num_core+sparse_indi,:-1].view(1,-1),facts[facts_indi.data[0],:-1].view(1,-1))
-            simi = torch.max(simi,Variable(torch.Tensor([0])))
-            loss += lambda_sparse*simi
-
-    ###For extra relations
     for targ in target[:,:]:
         _, indi = torch.max(F.cosine_similarity(targ.view(1,-1).expand(facts[:,:-1].size()),facts[:,:-1]),0)
         indi=indi.data[0]
@@ -248,6 +209,26 @@ for epoch in range(num_iters):
             simi = torch.max(simi,Variable(torch.Tensor([0])))  
             loss_neg += simi*facts[facts_indi.data[0],-1]
     loss += lambda_neg*loss_neg
+
+    #for core_indi in range(num_core):
+    #    auxi =  torch.sum(visualize[core_indi].expand(visualize[:num_core,:].size()) == visualize[:num_core,:],1)
+    #    auxi[core_indi] = 0
+    #    equals, facts_indi = torch.max(auxi,0)
+    #    if equals.data[0] == 3:
+    #        print("falle")
+    #        simi = 1-F.mse_loss(facts[core_indi,:-1].view(1,-1),facts[facts_indi.data[0],:-1].view(1,-1))
+    #        simi = torch.max(simi,Variable(torch.Tensor([0])))
+    #        loss += lambda_rep*simi
+    
+    ###For Sparse case, just make sure it doesnt repeat:
+    #for sparse_indi in range(sparse_core):
+    #    equals, facts_indi = torch.max(torch.sum(visualize[num_core+sparse_indi].expand(visualize[:num_core,:].size()) == visualize[:num_core,:],1),0)
+    #    if equals.data[0] == 3:
+    #        print("falle")
+    #        simi = 1-F.mse_loss(facts[num_core+sparse_indi,:-1].view(1,-1),facts[facts_indi.data[0],:-1].view(1,-1))
+    #        simi = torch.max(simi,Variable(torch.Tensor([0])))
+    #        loss += lambda_sparse*simi
+
 
     print(epoch, 'losssssssssssssssssssss',loss.data[0], 'neg', loss_neg.data[0])
     #pdb.set_trace()
