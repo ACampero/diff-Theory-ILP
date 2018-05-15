@@ -15,8 +15,16 @@ from torchtext.vocab import Vectors, GloVe
 import torch.nn.functional as F
 import pdb
 from copy import deepcopy
+import argparse
 
+parser = argparse.ArgumentParser()
+parser.add_argument('--lamb', default= 1. ,type=float)
+parser.add_argument('--sumand', default= 2. ,type=float)
+parser.add_argument('--learning_rate_rules', default= .01 ,type=float)
+parser.add_argument('--learning_rate', default= .01 ,type=float)
+parser.add_argument('--num_iters', default= 50, type=int)
 
+args = parser.parse_args()
 # In[11]:
 
 ##DATA
@@ -143,9 +151,10 @@ def amalgamate(x,y):
 # In[ ]:
 
 
-num_iters = 50
-learning_rate = .01
-learning_rate_rules = .01
+num_iters = args.num_iters
+learning_rate = args.learning_rate
+learning_rate_rules = args.learning_rate_rules
+sumand = args.sumand
 steps = 2
 
 num_feat = 2
@@ -192,7 +201,7 @@ target_has = Variable(data_has)
 target = [targetIS_A, target_is, target_can, target_has]
 
 beta = 10./total_elements
-lamb= 1./total_elements  #1.5 works
+lamb= args.lamb/total_elements  #1.5 works
 
 print('target', target)
 
@@ -209,15 +218,15 @@ for epoch in range(num_iters):
     for predicate in intensional_predicates:
         #loss_reg += torch.sum(torch.ge(valuation,0.4).type(torch.FloatTensor))
         #loss_reg += torch.sum(valuation)
-        loss_reg += torch.sum(valuation[predicate]/(valuation[predicate]+2.))
+        loss_reg += torch.sum(valuation[predicate]/(valuation[predicate]+sumand))
     
-    #if epoch % 49 == 0 and epoch>0 :
-    #    print('epoch {} before_decoder'.format(epoch), torch.round(100*valuation)/100.)
+    if epoch % 49 == 0 and epoch>0 :
+        print('epoch {} before_decoder'.format(epoch), [torch.round(100*valuation[i])/100. for i in range(4)])
         
     for step in range(steps):
         valuation = decoder_efficient(valuation)
-        #if epoch % 49 == 0 and epoch>0 :
-        #    print('epoch {}, step {}'.format(epoch,step+1), torch.round(100*valuation)/100.)
+        if epoch % 49 == 0 and epoch>0 :
+            print('epoch {}, step {}'.format(epoch,step+1), [torch.round(100*valuation[i])/100. for i in range(4)])
     
     loss = Variable(torch.Tensor([0]))
     for predicate in intensional_predicates:
@@ -234,7 +243,7 @@ for epoch in range(num_iters):
 #data[0,6,0],data[1,6,0],data[1,6,2],data[1,6,6] = 0,0,0,0
 # Knows: salmon is fish, salmon is salmon
 
-print(valuation)
+#print(valuation)
 print(embeddings)
 print(rules)
 
