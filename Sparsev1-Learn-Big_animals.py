@@ -4,7 +4,7 @@
 # In[10]:
 
 ###el bueno
-import scipy.io
+#import scipy.io
 import numpy
 
 import torchtext
@@ -18,11 +18,12 @@ from copy import deepcopy
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--lamb', default= 1. ,type=float)
+parser.add_argument('--lamb', default= 50. ,type=float)
 parser.add_argument('--sumand', default= 2. ,type=float)
 parser.add_argument('--learning_rate_rules', default= .01 ,type=float)
 parser.add_argument('--learning_rate', default= .01 ,type=float)
-parser.add_argument('--num_iters', default= 50, type=int)
+parser.add_argument('--num_iters', default= 200, type=int)
+parser.add_argument('--unif', action='store_const', default=False, const=True)
 
 args = parser.parse_args()
 # In[11]:
@@ -54,7 +55,7 @@ data_is[7,5], data_is[11,5], data_is[13,5] = 1., 1., 1. #yellow
 
 
 ##can
-data_can = torch.Tensor(15,6).zero_()
+data_can = torch.Tensor(15,5).zero_()
 data_can[:,0] = torch.ones(15,1) #grow
 data_can[8:,1] = torch.ones(7,1) #move
 data_can[9:12,2] = torch.ones(3,1) #fly
@@ -97,11 +98,12 @@ def decoder_efficient(valuation):
     #rules_aux = F.dropout(rules_aux, p=.1, training=True)
 
     unifs = F.cosine_similarity(embeddings_aux, rules_aux).view(num_predicates,-1)
-    
-    #unifs = F.pairwise_distance(embeddings_aux, rules_aux).view(num_predicates,-1)
-    #unifs = torch.exp(-unifs)
-    #unifs_sum = torch.sum(unifs, 0)
-    #unifs= unifs/unifs_sum
+    if args.unif:
+        print('entre a unifs')
+        unifs = F.pairwise_distance(embeddings_aux, rules_aux).view(num_predicates,-1)
+        unifs = torch.exp(-unifs)
+        unifs_sum = torch.sum(unifs, 0)
+        unifs = unifs/unifs_sum
     #unifs = F.normalize(unifs,dim=0)
     #unifs=Variable(torch.Tensor([[1,0,1,1,1,0],[0,1,0,0,0,1]]))
 
@@ -140,8 +142,8 @@ def decoder_efficient(valuation):
                         #if predicate == 0 and s==1 and o==1 and valuation_aux.data[0]>.3:
                         #    print('body1', body1, 'body2', body2)
 
-                valuation_new[predicate][s,o] = amalgamate(valuation[predicate][s,o], valuation_aux)  ##use amalgamate***+
-
+                res = amalgamate(valuation[predicate][s,o], valuation_aux)  ##use amalgamate***+
+                valuation_new[predicate][s,o] = res#/(res+sumand)
     return valuation_new
     
 def amalgamate(x,y):
@@ -212,21 +214,24 @@ for epoch in range(num_iters):
             
     optimizer.zero_grad()
     
-    valuation = initial_val
-    
+    valuation = []
+    for predicate in intensional_predicates:
+        valuation = valuation+ [initial_val[predicate]/(initial_val[predicate]+sumand)]
+        #valuation[predicate] = F.dropout(valuation[predicate],p=.9)
+
     loss_reg = Variable(torch.Tensor([0]))
     for predicate in intensional_predicates:
-        #loss_reg += torch.sum(torch.ge(valuation,0.4).type(torch.FloatTensor))
-        #loss_reg += torch.sum(valuation)
-        loss_reg += torch.sum(valuation[predicate]/(valuation[predicate]+sumand))
-    
+        #valuation[predicate] = valuation[predicate]/(valuation[predicate]+sumand)
+        #loss_reg += torch.sum(initial_val[predicate]/(valuation[predicate] + .01))
+        loss_reg += torch.sum(valuation[predicate])        
+
     if epoch % 49 == 0 and epoch>0 :
         print('epoch {} before_decoder'.format(epoch), [torch.round(100*valuation[i])/100. for i in range(4)])
         
     for step in range(steps):
         valuation = decoder_efficient(valuation)
-        if epoch % 49 == 0 and epoch>0 :
-            print('epoch {}, step {}'.format(epoch,step+1), [torch.round(100*valuation[i])/100. for i in range(4)])
+        #if epoch % 49 == 0 and epoch>0 :
+        #    print('epoch {}, step {}'.format(epoch,step+1), [torch.round(100*valuation[i])/100. for i in range(4)])
     
     loss = Variable(torch.Tensor([0]))
     for predicate in intensional_predicates:
@@ -237,23 +242,19 @@ for epoch in range(num_iters):
     
     
     print(epoch, 'losssssssssssssssssssss',torch.round(10000*loss).data[0]/10000,                 'loss_pos', torch.round(10000*loss_pos).data[0]/10000,                  'loss_reg', torch.round(10000*loss_reg).data[0]/10000)
-    loss.backward()
-    optimizer.step()
+    if epoch<num_iters-1:
+        loss.backward()
+        optimizer.step()
 
 #data[0,6,0],data[1,6,0],data[1,6,2],data[1,6,6] = 0,0,0,0
 # Knows: salmon is fish, salmon is salmon
 
 #print(valuation)
-print(embeddings)
-print(rules)
-
+print(torch.round(100*embeddings)/100.)
+print(torch.round(100*rules)/100.)
 
 
 # In[43]:
-
-pdb.set_trace()
-print(embeddings)
-print(rules)
 
 rules_aux = torch.cat((rules[:,:num_feat],rules[:,num_feat:2*num_feat],rules[:,2*num_feat:3*num_feat]),0)
 rules_aux = rules_aux.repeat(num_predicates,1)
@@ -264,19 +265,17 @@ embeddings_aux = embeddings.repeat(1,num_rules*3).view(-1,num_feat)
 unifs_real = F.cosine_similarity(embeddings_aux, rules_aux).view(num_predicates,-1)
 #####Unifs real is of the form
 #####predicates * [Head1 Head2 Body1 Body21 Body2 Body22], so i normalize in dim,0  
-
-print('aaaaa',unifs_real)
+print('no unifs',unifs_real)
 #print('oooo',F.pairwise_distance(embeddings_aux, rules_aux).view(num_predicates,-1))
 
-unifs = F.pairwise_distance(embeddings_aux, rules_aux).view(num_predicates,-1)
-unifs = torch.exp(-unifs)
+#unifs = F.pairwise_distance(embeddings_aux, rules_aux).view(num_predicates,-1)
+#unifs = torch.exp(-unifs)
 #print(unifs)
-unifs_sum = torch.sum(unifs, 0)
-unifs= unifs/unifs_sum
-print('finaaaal',unifs)
+#unifs_sum = torch.sum(unifs, 0)
+#unifs= unifs/unifs_sum
+#print('yes unifs',unifs)
 
-print('normalize',F.normalize(unifs_real,dim=0))
-
+pdb.set_trace()
 
 
 # In[20]:
