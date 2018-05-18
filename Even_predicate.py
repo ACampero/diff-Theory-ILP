@@ -27,8 +27,12 @@ even_extension = torch.zeros(1,num_constants)
 ##Valuation
 valuation_init = [Variable(zero_extension), Variable(succ_extension), Variable(aux_extension), Variable(even_extension)]
 
+num_predicates= len(valuation_init)
+intensional_predicates=[2,3]
+num_intensional_predicates = len(intensional_predicates)
+
 ##Target
-target = torch.zeros(1,num_constants)
+target = Variable(torch.zeros(1,num_constants))
 even = [0,2,4,6]
 for integer in even:
     target[0,integer]=1
@@ -43,6 +47,7 @@ def decoder_efficient(valuation, step):
     unifs = F.cosine_similarity(embeddings_aux, rules_aux).view(num_predicates,-1)
     
     ##Get_Valuations
+    valuation_new = [valuation[i] ]
     valuation_new = [deepcopy(valuation[0]),deepcopy(valuation[1]),Variable(torch.zeros(valuation[2].size())),Variable(torch.zeros(valuation[3].size()))]
     for predicate in intensional_predicates:
         if valuation[predicate].size()[0] == 1:
@@ -115,7 +120,7 @@ def amalgamate(x,y):
     return x + y - x*y
 
 ##------SETUP------
-num_iters = 50
+num_iters = 100
 learning_rate = .1
 steps = 4
 num_feat=4
@@ -133,7 +138,10 @@ rules = Variable(torch.rand(num_rules, num_feat*3), requires_grad=True)
 #rule3 = torch.Tensor([0,0,1,0,0,1,0,0,0,1,0,0]).view(1,-1)
 #rules = Variable(torch.cat((rule1,rule2,rule3),0), requires_grad=True)
 
-optimizer = torch.optim.Adam([rules],lr=learning_rate)
+optimizer = torch.optim.Adam([
+
+             embeddings, 
+             rules],lr=learning_rate)
 criterion = torch.nn.BCELoss(size_average=False)
 
 ##-------TRAINING------
@@ -143,9 +151,9 @@ for epoch in range(num_iters):
 
     for step in range(steps):
         valuation = decoder_efficient(valuation,step)
-        print('step',step,'valuation3', valuation[3], 'valuation2',valuation[2])
+        #print('step',step,'valuation3', valuation[3], 'valuation2',valuation[2])
 
-    loss = criterion(valuation[-1][0,:],Variable(torch.Tensor(target[0,:])))
+    loss = criterion(valuation[-1][0,:],target[0,:])
     print(epoch,'lossssssssssssssssssssssssssss',loss.data[0])
 
     if epoch<num_iters-1:
@@ -161,7 +169,9 @@ embeddings_aux = embeddings.repeat(1,num_rules*3).view(-1,num_feat)
 unifs = F.cosine_similarity(embeddings_aux, rules_aux).view(num_predicates,-1)
 print('unifications',unifs)
 
-accu = torch.sum(torch.abs(torch.round(valuation[-1]+.40)-target[-1])).data[0]
+print(target[0:])
+print('val',valuation[-1])
+accu = torch.sum(torch.abs(torch.round(valuation[-1][0,:])-target[0,:])).data[0]
 print('accuracy',accu)
 
 pdb.set_trace()
