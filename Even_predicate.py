@@ -124,8 +124,8 @@ num_predicates= 4
 intensional_predicates=[2,3]
 num_intensional_predicates = len(intensional_predicates)
 
-embeddings = Variable(torch.rand(num_predicates, num_feat), requires_grad=True)
-#embeddings = Variable(torch.eye(4), requires_grad=True)
+#embeddings = Variable(torch.rand(num_predicates, num_feat), requires_grad=True)
+embeddings = Variable(torch.eye(4), requires_grad=True)
 
 rules = Variable(torch.rand(num_rules, num_feat*3), requires_grad=True)
 #rule1 = torch.Tensor([0,0,0,1,1,0,0,0,0,1,0,0]).view(1,-1)
@@ -133,7 +133,7 @@ rules = Variable(torch.rand(num_rules, num_feat*3), requires_grad=True)
 #rule3 = torch.Tensor([0,0,1,0,0,1,0,0,0,1,0,0]).view(1,-1)
 #rules = Variable(torch.cat((rule1,rule2,rule3),0), requires_grad=True)
 
-optimizer = torch.optim.Adam([rules, embeddings],lr=learning_rate)
+optimizer = torch.optim.Adam([rules],lr=learning_rate)
 criterion = torch.nn.BCELoss(size_average=False)
 
 ##-------TRAINING------
@@ -145,7 +145,7 @@ for epoch in range(num_iters):
         valuation = decoder_efficient(valuation,step)
         print('step',step,'valuation3', valuation[3], 'valuation2',valuation[2])
 
-    loss = criterion(valuation[3][0,:],Variable(torch.Tensor(target[0,:])))
+    loss = criterion(valuation[-1][0,:],Variable(torch.Tensor(target[0,:])))
     print(epoch,'lossssssssssssssssssssssssssss',loss.data[0])
 
     if epoch<num_iters-1:
@@ -153,10 +153,15 @@ for epoch in range(num_iters):
         optimizer.step()
 
 ##------PRINT RESULTS------
-print('embeddings', embeddings)
-print( 'rules',rules)
+#print('embeddings', embeddings)
+#print( 'rules',rules)
 rules_aux = torch.cat((rules[:,:num_feat],rules[:,num_feat:2*num_feat],rules[:,2*num_feat:3*num_feat]),0)
 rules_aux = rules_aux.repeat(num_predicates,1)
 embeddings_aux = embeddings.repeat(1,num_rules*3).view(-1,num_feat)
 unifs = F.cosine_similarity(embeddings_aux, rules_aux).view(num_predicates,-1)
 print('unifications',unifs)
+
+accu = torch.sum(torch.abs(torch.round(valuation[-1]+.40)-target[-1])).data[0]
+print('accuracy',accu)
+
+pdb.set_trace()
