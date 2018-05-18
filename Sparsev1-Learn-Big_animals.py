@@ -159,16 +159,16 @@ learning_rate_rules = args.learning_rate_rules
 sumand = args.sumand
 steps = 2
 
-num_feat = 2
-num_rules = 2
+num_feat = 4
+num_rules = 4
 intensional_predicates = [0,1,2,3]
 num_intensional_predicates = len(intensional_predicates)
 
-#embeddings = Variable(torch.eye(num_predicates), requires_grad=True)
+embeddings = Variable(torch.eye(num_predicates), requires_grad=True)
 #embedding1= torch.Tensor([1,0]).view(1,-1)
 #embeddings2= torch.Tensor([0,1]).expand(3,2)
 #embeddings= Variable(torch.cat((embedding1,embeddings2),0) ,requires_grad=True)
-embeddings = Variable(torch.rand(num_predicates, num_feat), requires_grad=True)
+#embeddings = Variable(torch.rand(num_predicates, num_feat), requires_grad=True)
 
 #rule1 = torch.Tensor([1,0,1,0,1,0]).view(1,-1)
 #rule2 = torch.Tensor([0,1,1,0,0,1]).view(1,-1)
@@ -190,7 +190,7 @@ elif core_init == 'random':
 optimizer = torch.optim.Adam([
         {'params': initial_val},
         {'params': [rules], 'lr': learning_rate_rules},
-        {'params': [embeddings], 'lr':learning_rate_rules},
+        #{'params': [embeddings], 'lr':learning_rate_rules},
     ], lr = learning_rate)
 
 criterion = torch.nn.BCELoss(size_average=False)
@@ -217,7 +217,8 @@ for epoch in range(num_iters):
     valuation = []
     for predicate in intensional_predicates:
         valuation = valuation+ [initial_val[predicate]/(initial_val[predicate]+sumand)]
-        #valuation[predicate] = F.dropout(valuation[predicate],p=.9)
+        drop = .3
+        #valuation[predicate] = (F.dropout(valuation[predicate],p=drop,training= (epoch<num_iters-1)))*(1-drop)
 
     loss_reg = Variable(torch.Tensor([0]))
     for predicate in intensional_predicates:
@@ -275,10 +276,16 @@ print('no unifs',unifs_real)
 #unifs= unifs/unifs_sum
 #print('yes unifs',unifs)
 
-pdb.set_trace()
+#pdb.set_trace()
 
 
 # In[20]:
 
 rules[0][0]
 
+accu = [torch.sum(torch.abs(torch.round(valuation[i]+.40)-target[i])).data[0] for i in range(num_predicates)]
+print('accuracy',sum(accu))
+compress = [torch.sum(torch.round(10*initial_val[i]+.40)).data[0] for i in range(num_predicates)]
+print('compress',sum(compress))
+
+pdb.set_trace()
