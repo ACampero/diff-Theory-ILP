@@ -11,32 +11,60 @@ import pdb
 
 
 ##------DATA--------
-num_constants = 11
-background_predicates =[0,1]
-intensional_predicates=[2,3]
+background_predicates =[0]
+intensional_predicates=[1,2]
 
+num_constants = 6
 ##Background Knowledge
-zero_extension = torch.zeros(1,num_constants).view(-1,1)
-zero_extension[0,0] = 1
-succ_extension = torch.eye(num_constants-1,num_constants-1)
-succ_extension = torch.cat((torch.zeros(num_constants-1,1),succ_extension),1)
-succ_extension = torch.cat((succ_extension,torch.zeros(1,num_constants)),0)
+edge_extension = torch.zeros(num_constants, num_constants)
+edge_extension[0,1] = 1
+edge_extension[1,2] = 1
+edge_extension[1,3] = 1
+edge_extension[2,0] = 1
+edge_extension[3,4] = 1
+edge_extension[3,5] = 1
+edge_extension[4,5] = 1
+edge_extension[5,4] = 1
+
+num_constants_2=5
+edge_extension_2 = torch.zeros(num_constants_2, num_constants_2)
+edge_extension_2[0,1] = 1
+edge_extension_2[2,3] = 1
+edge_extension_2[3,4] = 1
+edge_extension_2[4,2] = 1
 
 #Intensional Predicates
 aux_extension = torch.zeros(num_constants,num_constants)
-even_extension = torch.zeros(1,num_constants).view(-1,1)
+target_extension = torch.zeros(1,num_constants).view(-1,1)
+
+valuation_init = [Variable(edge_extension), Variable(aux_extension), Variable(target_extension)]
 
 ##Target
 target = Variable(torch.zeros(1,num_constants)).view(-1,1)
-steps = 6
-even = [0,2,4,6,8,10]
-for integer in even:
+target_aux = [0,1,2,4,5] #Family1
+#target_aux = [2,3,4]
+for integer in target_aux:
     target[integer,0]=1
 
+
+#Intensional Predicates
+aux_extension_2 = torch.zeros(num_constants_2,num_constants_2)
+target_extension_2 = torch.zeros(1,num_constants_2).view(-1,1)
+
+valuation_init_2 = [Variable(edge_extension_2), Variable(aux_extension_2), Variable(target_extension_2)]
+
+##Target
+steps = 6
+target_2 = Variable(torch.zeros(1,num_constants_2)).view(-1,1)
+#target_aux = [0,1,2,4,5] #Family1
+target_aux_2 = [2,3,4]
+for integer in target_aux_2:
+    target_2[integer,0]=1
+
+
+
 num_rules = 3
-rules_str = [1,2,3]
-
-
+rules_str = [4,5,3]
 
 ## 1 F(x) <-- F(X)
 ## 2 F(x)<---F(Z),F(Z,X)
@@ -45,18 +73,12 @@ rules_str = [1,2,3]
 ## 5 F(X,Y) <-- F(X,Y)
 ## 8 F(X,X) <-- F(X)
 
-
-
-
-
-##Valuation
-valuation_init = [Variable(zero_extension), Variable(succ_extension), Variable(aux_extension), Variable(even_extension)]
 num_predicates= len(valuation_init)
 num_intensional_predicates = len(intensional_predicates)
 num_feat = num_predicates
 
 ##------FORWARD CHAINING------
-def decoder_efficient(valuation, step):
+def decoder_efficient(valuation, step, num_constants):
     ##Unifications
     rules_aux = torch.cat((rules[:,:num_feat],rules[:,num_feat:2*num_feat],rules[:,2*num_feat:3*num_feat]),0)
     rules_aux = rules_aux.repeat(num_predicates,1)
@@ -132,17 +154,17 @@ def amalgamate(x,y):
     return x + y - x*y
 
 ##------SETUP------
-num_iters = 100
+num_iters = 25
 learning_rate = .1
 
 
 #embeddings = Variable(torch.rand(num_predicates, num_feat), requires_grad=True)
-embeddings = Variable(torch.eye(4), requires_grad=True)
+embeddings = Variable(torch.eye(num_feat), requires_grad=True)
 
 rules = Variable(torch.rand(num_rules, num_feat*3), requires_grad=True)
-#rule1 = torch.Tensor([0,0,0,1,1,0,0,0,0,1,0,0]).view(1,-1)
-#rule2 = torch.Tensor([0,0,0,1,0,0,0,1,0,0,1,0]).view(1,-1)
-#rule3 = torch.Tensor([0,0,1,0,0,1,0,0,0,1,0,0]).view(1,-1)
+#rule1 = torch.Tensor([0,0,1,0,1,0,1,0,0]).view(1,-1)
+#rule2 = torch.Tensor([0,1,0,1,0,0,0,0,1,]).view(1,-1)
+#rule3 = torch.Tensor([0,1,0,0,1,0,0,1,0]).view(1,-1)
 #rules = Variable(torch.cat((rule1,rule2,rule3),0), requires_grad=True)
 
 optimizer = torch.optim.Adam([
@@ -152,20 +174,31 @@ optimizer = torch.optim.Adam([
 criterion = torch.nn.BCELoss(size_average=False)
 
 ##-------TRAINING------
+#m=torch.distributions.Bernoulli(torch.Tensor(target.size))
 for epoch in range(num_iters):
     for par in optimizer.param_groups[:]:
         for param in par['params']:
             param.data.clamp_(min=0.,max=1.)
 
     optimizer.zero_grad()
-    valuation = valuation_init
+    
+    if epoch%2==0:
+        valuation = valuation_init
+        const_aux = num_constants
+        target_aux = target
+    else:
+        valuation = valuation_init_2
+        const_aux = num_constants_2
+       	target_aux = target_2
 
+    #pdb.set_trace()
     for step in range(steps):
-        valuation = decoder_efficient(valuation,step)
+        #pdb.set_trace()
+        valuation = decoder_efficient(valuation,step,const_aux)
         #print('step',step,'valuation3', valuation[3], 'valuation2',valuation[2])
-
-    loss = criterion(valuation[-1],target)
-    print(epoch,'lossssssssssssssssssssssssssss',loss.data[0])
+    #pdb.set_trace()
+    loss = criterion(valuation[-1],target_aux)
+    print(epoch,valuation[-1].size()[0],'lossssssssssssssssssssssssssss',loss.data[0])
 
     if epoch<num_iters-1:
         loss.backward()
@@ -185,4 +218,4 @@ print('val',valuation[-1])
 accu = torch.sum(torch.round(valuation[-1])==target).data[0]
 print('accuracy',accu, '/', target.nelement())
 
-
+pdb.set_trace()
