@@ -1,0 +1,1050 @@
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.5700  0.3600
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.5700  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.5700  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.5600  0.0000
+
+Columns 10 to 14
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.2200  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.2200  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.3600  0.0000  0.0000
+ 0.0000  0.0000  0.3600  0.2300  0.0000
+ 0.0000  0.0000  0.3600  0.0000  0.2100
+[torch.FloatTensor of size 15x15]
+, Variable containing:
+ 0.1500  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.2500  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.2900  0.2700  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.1300  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.2600  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.1400  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.1200
+ 0.3900  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.1300  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.1300
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.1200
+ 0.0000  0.0000  0.0000  0.0000  0.1400  0.0000
+[torch.FloatTensor of size 15x6]
+, Variable containing:
+ 0.3000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.3900  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.5600  0.5600  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.3500  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.1800
+ 0.0000  0.0000  0.0000  0.3400  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+[torch.FloatTensor of size 15x5]
+, Variable containing:
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.3300  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.3700  0.3700  0.3700  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.1600  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.3400  0.3400  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.5500  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.3200  0.3200  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.3300  0.3200
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+[torch.FloatTensor of size 15x10]
+])
+(196, 'losssssssssssssssssssss', 4.6083, 'loss_pos', 129.7687, 'loss_reg', 23.8158)
+(197, 'losssssssssssssssssssss', 4.6002, 'loss_pos', 129.4273, 'loss_reg', 23.7964)
+(198, 'losssssssssssssssssssss', 4.5934, 'loss_pos', 129.1693, 'loss_reg', 23.7751)
+(199, 'losssssssssssssssssssss', 4.5859, 'loss_pos', 128.7782, 'loss_reg', 23.7719)
+(200, 'losssssssssssssssssssss', 4.5786, 'loss_pos', 128.4553, 'loss_reg', 23.7581)
+(201, 'losssssssssssssssssssss', 4.5762, 'loss_pos', 128.483, 'loss_reg', 23.7266)
+(202, 'losssssssssssssssssssss', 4.5754, 'loss_pos', 128.6147, 'loss_reg', 23.6915)
+(203, 'losssssssssssssssssssss', 4.5738, 'loss_pos', 128.6348, 'loss_reg', 23.6699)
+(204, 'losssssssssssssssssssss', 4.5719, 'loss_pos', 128.5234, 'loss_reg', 23.6715)
+(205, 'losssssssssssssssssssss', 4.5699, 'loss_pos', 128.4075, 'loss_reg', 23.6734)
+(206, 'losssssssssssssssssssss', 4.5677, 'loss_pos', 128.2373, 'loss_reg', 23.684)
+(207, 'losssssssssssssssssssss', 4.5666, 'loss_pos', 128.1401, 'loss_reg', 23.6916)
+(208, 'losssssssssssssssssssss', 4.5667, 'loss_pos', 128.1747, 'loss_reg', 23.685)
+(209, 'losssssssssssssssssssss', 4.5648, 'loss_pos', 128.1757, 'loss_reg', 23.6646)
+(210, 'losssssssssssssssssssss', 4.5674, 'loss_pos', 128.4164, 'loss_reg', 23.6449)
+(211, 'losssssssssssssssssssss', 4.5699, 'loss_pos', 128.6385, 'loss_reg', 23.6268)
+(212, 'losssssssssssssssssssss', 4.5694, 'loss_pos', 128.5799, 'loss_reg', 23.6341)
+(213, 'losssssssssssssssssssss', 4.5698, 'loss_pos', 128.5514, 'loss_reg', 23.6431)
+(214, 'losssssssssssssssssssss', 4.5698, 'loss_pos', 128.4126, 'loss_reg', 23.6708)
+(215, 'losssssssssssssssssssss', 4.5691, 'loss_pos', 128.3032, 'loss_reg', 23.6859)
+(216, 'losssssssssssssssssssss', 4.5679, 'loss_pos', 128.1511, 'loss_reg', 23.7031)
+(217, 'losssssssssssssssssssss', 4.5688, 'loss_pos', 128.1505, 'loss_reg', 23.7128)
+(218, 'losssssssssssssssssssss', 4.5678, 'loss_pos', 128.0148, 'loss_reg', 23.7297)
+(219, 'losssssssssssssssssssss', 4.5659, 'loss_pos', 127.9181, 'loss_reg', 23.7285)
+(220, 'losssssssssssssssssssss', 4.5679, 'loss_pos', 128.1785, 'loss_reg', 23.6977)
+(221, 'losssssssssssssssssssss', 4.5673, 'loss_pos', 128.4983, 'loss_reg', 23.6268)
+(222, 'losssssssssssssssssssss', 4.5648, 'loss_pos', 128.8475, 'loss_reg', 23.5305)
+(223, 'losssssssssssssssssssss', 4.5657, 'loss_pos', 129.438, 'loss_reg', 23.422)
+(224, 'losssssssssssssssssssss', 4.5633, 'loss_pos', 129.6617, 'loss_reg', 23.3512)
+(225, 'losssssssssssssssssssss', 4.5607, 'loss_pos', 129.8245, 'loss_reg', 23.2911)
+(226, 'losssssssssssssssssssss', 4.5592, 'loss_pos', 130.0119, 'loss_reg', 23.237)
+(227, 'losssssssssssssssssssss', 4.5557, 'loss_pos', 130.1034, 'loss_reg', 23.181)
+(228, 'losssssssssssssssssssss', 4.549, 'loss_pos', 130.1536, 'loss_reg', 23.0985)
+(229, 'losssssssssssssssssssss', 4.5424, 'loss_pos', 129.6841, 'loss_reg', 23.1214)
+(230, 'losssssssssssssssssssss', 4.5362, 'loss_pos', 129.2581, 'loss_reg', 23.1391)
+(231, 'losssssssssssssssssssss', 4.5361, 'loss_pos', 129.021, 'loss_reg', 23.1857)
+(232, 'losssssssssssssssssssss', 4.5355, 'loss_pos', 128.8657, 'loss_reg', 23.2103)
+(233, 'losssssssssssssssssssss', 4.5327, 'loss_pos', 128.6816, 'loss_reg', 23.2173)
+(234, 'losssssssssssssssssssss', 4.5307, 'loss_pos', 128.6165, 'loss_reg', 23.2082)
+(235, 'losssssssssssssssssssss', 4.5313, 'loss_pos', 128.6629, 'loss_reg', 23.2053)
+(236, 'losssssssssssssssssssss', 4.5285, 'loss_pos', 128.3447, 'loss_reg', 23.2384)
+(237, 'losssssssssssssssssssss', 4.5264, 'loss_pos', 127.8305, 'loss_reg', 23.3188)
+(238, 'losssssssssssssssssssss', 4.5282, 'loss_pos', 127.5386, 'loss_reg', 23.3965)
+(239, 'losssssssssssssssssssss', 4.526, 'loss_pos', 126.9947, 'loss_reg', 23.482)
+(240, 'losssssssssssssssssssss', 4.5252, 'loss_pos', 126.6248, 'loss_reg', 23.5473)
+(241, 'losssssssssssssssssssss', 4.525, 'loss_pos', 126.3836, 'loss_reg', 23.593)
+(242, 'losssssssssssssssssssss', 4.5247, 'loss_pos', 126.2397, 'loss_reg', 23.6189)
+(243, 'losssssssssssssssssssss', 4.5257, 'loss_pos', 126.3024, 'loss_reg', 23.6175)
+(244, 'losssssssssssssssssssss', 4.526, 'loss_pos', 126.3868, 'loss_reg', 23.6032)
+('epoch 245 before_decoder', [Variable containing:
+
+Columns 0 to 9
+ 0.2400  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.4200  0.4100  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.4000  0.4200  0.4100  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.4200  0.2100  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.4200  0.0000  0.1900  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.4300  0.0000  0.0000  0.0000  0.4100  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.4300  0.0000  0.0000  0.0000  0.3900  0.2100  0.0000  0.0000  0.0000
+ 0.0000  0.4100  0.0000  0.0000  0.0000  0.4100  0.0000  0.1900  0.0000  0.0000
+ 0.5400  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.5400  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.5300  0.3400
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.5300  0.3400
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.5300  0.3500
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.5400  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.5300  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.5300  0.0000
+
+Columns 10 to 14
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.2100  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.2100  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.3300  0.0000  0.0000
+ 0.0000  0.0000  0.3400  0.2000  0.0000
+ 0.0000  0.0000  0.3400  0.0000  0.2100
+[torch.FloatTensor of size 15x15]
+, Variable containing:
+ 0.1500  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.4200  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0900  0.2900  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.1300  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.2900  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.1300  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.1400
+ 0.4000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.1400  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.1300
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.1400
+ 0.0000  0.0000  0.0000  0.0000  0.1200  0.0000
+[torch.FloatTensor of size 15x6]
+, Variable containing:
+ 0.2900  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.4100  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.3800  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.5500  0.5400  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.3500  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.1800
+ 0.0000  0.0000  0.0000  0.3300  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+[torch.FloatTensor of size 15x5]
+, Variable containing:
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.4200  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.3800  0.3900  0.4000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.1700  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.3900  0.3900  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.5300  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.3400  0.3400  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.3400  0.3400
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+[torch.FloatTensor of size 15x10]
+])
+(245, 'losssssssssssssssssssss', 4.5255, 'loss_pos', 126.4762, 'loss_reg', 23.5798)
+(246, 'losssssssssssssssssssss', 4.5241, 'loss_pos', 126.5832, 'loss_reg', 23.5438)
+(247, 'losssssssssssssssssssss', 4.5241, 'loss_pos', 126.8181, 'loss_reg', 23.4967)
+(248, 'losssssssssssssssssssss', 4.5225, 'loss_pos', 127.0398, 'loss_reg', 23.435)
+(249, 'losssssssssssssssssssss', 4.5233, 'loss_pos', 127.3679, 'loss_reg', 23.3782)
+(250, 'losssssssssssssssssssss', 4.5231, 'loss_pos', 127.5628, 'loss_reg', 23.3364)
+(251, 'losssssssssssssssssssss', 4.5223, 'loss_pos', 127.6135, 'loss_reg', 23.3186)
+(252, 'losssssssssssssssssssss', 4.5219, 'loss_pos', 127.6757, 'loss_reg', 23.3018)
+(253, 'losssssssssssssssssssss', 4.5223, 'loss_pos', 127.777, 'loss_reg', 23.2859)
+(254, 'losssssssssssssssssssss', 4.5213, 'loss_pos', 127.7942, 'loss_reg', 23.2708)
+(255, 'losssssssssssssssssssss', 4.5215, 'loss_pos', 127.8908, 'loss_reg', 23.2541)
+(256, 'losssssssssssssssssssss', 4.5216, 'loss_pos', 127.9637, 'loss_reg', 23.2404)
+(257, 'losssssssssssssssssssss', 4.521, 'loss_pos', 128.0544, 'loss_reg', 23.2162)
+(258, 'losssssssssssssssssssss', 4.5203, 'loss_pos', 128.1727, 'loss_reg', 23.1847)
+(259, 'losssssssssssssssssssss', 4.522, 'loss_pos', 128.4594, 'loss_reg', 23.1453)
+(260, 'losssssssssssssssssssss', 4.5214, 'loss_pos', 128.5846, 'loss_reg', 23.1143)
+(261, 'losssssssssssssssssssss', 4.5216, 'loss_pos', 128.6459, 'loss_reg', 23.1043)
+(262, 'losssssssssssssssssssss', 4.522, 'loss_pos', 128.6585, 'loss_reg', 23.1056)
+(263, 'losssssssssssssssssssss', 4.521, 'loss_pos', 128.5935, 'loss_reg', 23.1081)
+(264, 'losssssssssssssssssssss', 4.5209, 'loss_pos', 128.5336, 'loss_reg', 23.1192)
+(265, 'losssssssssssssssssssss', 4.5222, 'loss_pos', 128.538, 'loss_reg', 23.1318)
+(266, 'losssssssssssssssssssss', 4.5215, 'loss_pos', 128.3725, 'loss_reg', 23.1581)
+(267, 'losssssssssssssssssssss', 4.5209, 'loss_pos', 128.2607, 'loss_reg', 23.1735)
+(268, 'losssssssssssssssssssss', 4.5219, 'loss_pos', 128.3497, 'loss_reg', 23.1664)
+(269, 'losssssssssssssssssssss', 4.5209, 'loss_pos', 128.3023, 'loss_reg', 23.1648)
+(270, 'losssssssssssssssssssss', 4.52, 'loss_pos', 128.2801, 'loss_reg', 23.1604)
+(271, 'losssssssssssssssssssss', 4.5213, 'loss_pos', 128.3603, 'loss_reg', 23.1583)
+(272, 'losssssssssssssssssssss', 4.5211, 'loss_pos', 128.2276, 'loss_reg', 23.1821)
+(273, 'losssssssssssssssssssss', 4.5206, 'loss_pos', 128.1007, 'loss_reg', 23.2026)
+(274, 'losssssssssssssssssssss', 4.5213, 'loss_pos', 128.062, 'loss_reg', 23.2171)
+(275, 'losssssssssssssssssssss', 4.5194, 'loss_pos', 127.9184, 'loss_reg', 23.2255)
+(276, 'losssssssssssssssssssss', 4.5203, 'loss_pos', 127.9909, 'loss_reg', 23.2215)
+(277, 'losssssssssssssssssssss', 4.5205, 'loss_pos', 128.0356, 'loss_reg', 23.2139)
+(278, 'losssssssssssssssssssss', 4.5199, 'loss_pos', 127.9665, 'loss_reg', 23.2212)
+(279, 'losssssssssssssssssssss', 4.5213, 'loss_pos', 127.9849, 'loss_reg', 23.2333)
+(280, 'losssssssssssssssssssss', 4.5201, 'loss_pos', 127.907, 'loss_reg', 23.2353)
+(281, 'losssssssssssssssssssss', 4.521, 'loss_pos', 127.9418, 'loss_reg', 23.2381)
+(282, 'losssssssssssssssssssss', 4.5214, 'loss_pos', 127.9219, 'loss_reg', 23.2467)
+(283, 'losssssssssssssssssssss', 4.5206, 'loss_pos', 127.8463, 'loss_reg', 23.2532)
+(284, 'losssssssssssssssssssss', 4.5202, 'loss_pos', 127.8116, 'loss_reg', 23.256)
+(285, 'losssssssssssssssssssss', 4.5212, 'loss_pos', 127.8879, 'loss_reg', 23.251)
+(286, 'losssssssssssssssssssss', 4.5217, 'loss_pos', 128.0229, 'loss_reg', 23.2293)
+(287, 'losssssssssssssssssssss', 4.5211, 'loss_pos', 128.1078, 'loss_reg', 23.2063)
+(288, 'losssssssssssssssssssss', 4.5205, 'loss_pos', 128.1158, 'loss_reg', 23.198)
+(289, 'losssssssssssssssssssss', 4.5218, 'loss_pos', 128.1735, 'loss_reg', 23.2009)
+(290, 'losssssssssssssssssssss', 4.5217, 'loss_pos', 128.081, 'loss_reg', 23.2178)
+(291, 'losssssssssssssssssssss', 4.5215, 'loss_pos', 128.0241, 'loss_reg', 23.2269)
+(292, 'losssssssssssssssssssss', 4.522, 'loss_pos', 128.0436, 'loss_reg', 23.2287)
+(293, 'losssssssssssssssssssss', 4.5215, 'loss_pos', 128.018, 'loss_reg', 23.2284)
+('epoch 294 before_decoder', [Variable containing:
+
+Columns 0 to 9
+ 0.2400  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.4100  0.4100  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.3900  0.4100  0.4000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.4100  0.2100  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.4000  0.0000  0.1900  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.4100  0.0000  0.0000  0.0000  0.3600  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.4000  0.0000  0.0000  0.0000  0.3600  0.2000  0.0000  0.0000  0.0000
+ 0.0000  0.4000  0.0000  0.0000  0.0000  0.3600  0.0000  0.2000  0.0000  0.0000
+ 0.5400  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.5400  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.5400  0.3500
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.5400  0.3400
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.5400  0.3300
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.5400  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.5400  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.5400  0.0000
+
+Columns 10 to 14
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.2100  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.2100  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.3400  0.0000  0.0000
+ 0.0000  0.0000  0.3400  0.2100  0.0000
+ 0.0000  0.0000  0.3400  0.0000  0.2000
+[torch.FloatTensor of size 15x15]
+, Variable containing:
+ 0.1600  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.4100  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0700  0.2800  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.1300  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.2600  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.1400  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.1300
+ 0.3900  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.1300  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.1300
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.1300
+ 0.0000  0.0000  0.0000  0.0000  0.1300  0.0000
+[torch.FloatTensor of size 15x6]
+, Variable containing:
+ 0.2900  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.4000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.3600  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.5500  0.5500  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.3500  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.1800
+ 0.0000  0.0000  0.0000  0.3400  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000
+[torch.FloatTensor of size 15x5]
+, Variable containing:
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.4000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.4000  0.4000  0.4000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.1600  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.3600  0.3600  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.5300  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.3400  0.3300  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.3300  0.3400
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+[torch.FloatTensor of size 15x10]
+])
+(294, 'losssssssssssssssssssss', 4.5201, 'loss_pos', 127.9948, 'loss_reg', 23.2179)
+(295, 'losssssssssssssssssssss', 4.5217, 'loss_pos', 128.1999, 'loss_reg', 23.194)
+(296, 'losssssssssssssssssssss', 4.521, 'loss_pos', 128.2312, 'loss_reg', 23.1803)
+(297, 'losssssssssssssssssssss', 4.5213, 'loss_pos', 128.2764, 'loss_reg', 23.1749)
+(298, 'losssssssssssssssssssss', 4.5213, 'loss_pos', 128.2644, 'loss_reg', 23.1768)
+(299, 'losssssssssssssssssssss', 4.5214, 'loss_pos', 128.1873, 'loss_reg', 23.194)
+Variable containing:
+ 1  0  0  0
+ 0  1  0  0
+ 0  0  1  0
+ 0  0  0  1
+[torch.FloatTensor of size 4x4]
+
+Variable containing:
+
+Columns 0 to 9
+ 0.6400  0.3800  0.1500  0.6000  0.0000  0.3300  0.9700  0.6700  0.4500  1.0000
+ 0.6000  0.5300  0.5200  0.7900  0.0000  1.0000  0.1000  0.6200  0.8100  0.6500
+ 0.0000  0.9900  0.0000  0.0000  1.0000  0.0000  0.0000  0.0000  0.0000  1.0000
+ 0.7800  0.0000  0.7200  0.8200  0.9400  0.0000  0.0000  0.0000  0.7300  0.0000
+
+Columns 10 to 11
+ 0.6200  0.9200
+ 0.5200  0.2700
+ 0.0000  0.0000
+ 0.6700  0.7600
+[torch.FloatTensor of size 4x12]
+
+('no unifs', Variable containing:
+
+Columns 0 to 9
+ 0.6630  0.4823  0.0000  0.5827  0.0000  0.0000  1.0000  1.0000  0.2905  0.6776
+ 0.3910  0.4309  1.0000  0.0000  0.2682  0.8443  0.0000  0.0000  0.6415  0.5471
+ 0.1522  0.4170  0.0000  0.5375  0.7940  0.0873  0.0000  0.0000  0.3968  0.4376
+ 0.6200  0.6386  0.0000  0.6095  0.5455  0.5288  0.0000  0.0000  0.5887  0.2238
+
+Columns 10 to 11
+ 0.0000  0.5825
+ 1.0000  0.0000
+ 0.0000  0.5376
+ 0.0000  0.6096
+[torch.FloatTensor of size 4x12]
+)
+('accuracy', 0.0)
+('compress', 79.0)
+--Return--
+> /om/user/campero/diff-Theory-ILP/Sparsev1-Learn-Big_animals.py(291)<module>()->None
+-> pdb.set_trace()
+(Pdb) Traceback (most recent call last):
+  File "Sparsev1-Learn-Big_animals.py", line 291, in <module>
+    pdb.set_trace()
+  File "/om/user/campero/.conda/envs/project2/lib/python2.7/bdb.py", line 53, in trace_dispatch
+    return self.dispatch_return(frame, arg)
+  File "/om/user/campero/.conda/envs/project2/lib/python2.7/bdb.py", line 88, in dispatch_return
+    self.user_return(frame, arg)
+  File "/om/user/campero/.conda/envs/project2/lib/python2.7/pdb.py", line 190, in user_return
+    self.interaction(frame, None)
+  File "/om/user/campero/.conda/envs/project2/lib/python2.7/pdb.py", line 210, in interaction
+    self.cmdloop()
+  File "/om/user/campero/.conda/envs/project2/lib/python2.7/cmd.py", line 130, in cmdloop
+    line = raw_input(self.prompt)
+KeyboardInterrupt
+bash-4.2$ python Sparsev1-Learn-family.py --lamb .25 --sumand .1 --learning_rate .1 --learning_rate_rules .1
+(0, 'losssssssssssssssssssss', 242.9928, 'loss_pos', 214.3619, 'loss_reg', 114.5237)
+(1, 'losssssssssssssssssssss', 159.5269, 'loss_pos', 135.7478, 'loss_reg', 95.1167)
+(2, 'losssssssssssssssssssss', 138.6408, 'loss_pos', 118.7899, 'loss_reg', 79.4038)
+(3, 'losssssssssssssssssssss', 136.4725, 'loss_pos', 119.7248, 'loss_reg', 66.9906)
+(4, 'losssssssssssssssssssss', 135.692, 'loss_pos', 121.4714, 'loss_reg', 56.8821)
+(5, 'losssssssssssssssssssss', 131.6212, 'loss_pos', 119.3971, 'loss_reg', 48.8961)
+(6, 'losssssssssssssssssssss', 124.6697, 'loss_pos', 113.9414, 'loss_reg', 42.9129)
+(7, 'losssssssssssssssssssss', 116.0516, 'loss_pos', 106.2668, 'loss_reg', 39.1392)
+(8, 'losssssssssssssssssssss', 106.5307, 'loss_pos', 97.2762, 'loss_reg', 37.0178)
+(9, 'losssssssssssssssssssss', 97.3587, 'loss_pos', 88.2961, 'loss_reg', 36.2505)
+(10, 'losssssssssssssssssssss', 90.0913, 'loss_pos', 80.8179, 'loss_reg', 37.0937)
+(11, 'losssssssssssssssssssss', 85.3641, 'loss_pos', 75.6642, 'loss_reg', 38.7997)
+(12, 'losssssssssssssssssssss', 82.9853, 'loss_pos', 72.8482, 'loss_reg', 40.5482)
+(13, 'losssssssssssssssssssss', 82.3459, 'loss_pos', 71.8632, 'loss_reg', 41.9309)
+(14, 'losssssssssssssssssssss', 82.7051, 'loss_pos', 72.0157, 'loss_reg', 42.7576)
+(15, 'losssssssssssssssssssss', 83.1447, 'loss_pos', 72.4017, 'loss_reg', 42.9719)
+(16, 'losssssssssssssssssssss', 82.9769, 'loss_pos', 72.3386, 'loss_reg', 42.5532)
+(17, 'losssssssssssssssssssss', 82.0141, 'loss_pos', 71.6236, 'loss_reg', 41.5619)
+(18, 'losssssssssssssssssssss', 80.4825, 'loss_pos', 70.4602, 'loss_reg', 40.0894)
+(19, 'losssssssssssssssssssss', 78.6613, 'loss_pos', 69.0782, 'loss_reg', 38.3324)
+(20, 'losssssssssssssssssssss', 77.0125, 'loss_pos', 67.8571, 'loss_reg', 36.6215)
+(21, 'losssssssssssssssssssss', 75.6686, 'loss_pos', 66.9272, 'loss_reg', 34.9654)
+(22, 'losssssssssssssssssssss', 74.4162, 'loss_pos', 66.0462, 'loss_reg', 33.4801)
+(23, 'losssssssssssssssssssss', 73.079, 'loss_pos', 64.9882, 'loss_reg', 32.363)
+(24, 'losssssssssssssssssssss', 71.6204, 'loss_pos', 63.7117, 'loss_reg', 31.6345)
+(25, 'losssssssssssssssssssss', 70.1132, 'loss_pos', 62.2731, 'loss_reg', 31.3607)
+(26, 'losssssssssssssssssssss', 68.5635, 'loss_pos', 60.7284, 'loss_reg', 31.3406)
+(27, 'losssssssssssssssssssss', 66.9706, 'loss_pos', 59.0874, 'loss_reg', 31.5329)
+(28, 'losssssssssssssssssssss', 65.2903, 'loss_pos', 57.3268, 'loss_reg', 31.8539)
+(29, 'losssssssssssssssssssss', 63.4962, 'loss_pos', 55.4417, 'loss_reg', 32.2181)
+(30, 'losssssssssssssssssssss', 61.7451, 'loss_pos', 53.6033, 'loss_reg', 32.5672)
+(31, 'losssssssssssssssssssss', 60.0817, 'loss_pos', 51.8686, 'loss_reg', 32.8522)
+(32, 'losssssssssssssssssssss', 58.839, 'loss_pos', 50.5675, 'loss_reg', 33.0856)
+(33, 'losssssssssssssssssssss', 58.1986, 'loss_pos', 49.8954, 'loss_reg', 33.2131)
+(34, 'losssssssssssssssssssss', 57.5861, 'loss_pos', 49.2742, 'loss_reg', 33.2477)
+(35, 'losssssssssssssssssssss', 56.9267, 'loss_pos', 48.6288, 'loss_reg', 33.1916)
+(36, 'losssssssssssssssssssss', 56.0711, 'loss_pos', 47.8109, 'loss_reg', 33.0408)
+(37, 'losssssssssssssssssssss', 55.1177, 'loss_pos', 46.9045, 'loss_reg', 32.8526)
+(38, 'losssssssssssssssssssss', 54.2025, 'loss_pos', 46.0326, 'loss_reg', 32.6799)
+(39, 'losssssssssssssssssssss', 53.3755, 'loss_pos', 45.2649, 'loss_reg', 32.4428)
+(40, 'losssssssssssssssssssss', 52.6595, 'loss_pos', 44.5962, 'loss_reg', 32.2531)
+(41, 'losssssssssssssssssssss', 51.983, 'loss_pos', 43.9827, 'loss_reg', 32.0009)
+(42, 'losssssssssssssssssssss', 51.2361, 'loss_pos', 43.3158, 'loss_reg', 31.6813)
+(43, 'losssssssssssssssssssss', 50.4003, 'loss_pos', 42.577, 'loss_reg', 31.2932)
+(44, 'losssssssssssssssssssss', 49.5013, 'loss_pos', 41.779, 'loss_reg', 30.8892)
+(45, 'losssssssssssssssssssss', 48.5048, 'loss_pos', 40.8886, 'loss_reg', 30.465)
+(46, 'losssssssssssssssssssss', 47.3543, 'loss_pos', 39.8373, 'loss_reg', 30.0681)
+(47, 'losssssssssssssssssssss', 46.0784, 'loss_pos', 38.6157, 'loss_reg', 29.8508)
+(48, 'losssssssssssssssssssss', 44.7079, 'loss_pos', 37.2812, 'loss_reg', 29.7067)
+('epoch 49 before_decoder', [Variable containing:
+ 0.5800
+ 0.9800
+ 1.0000
+ 0.0000
+ 0.4300
+ 0.4600
+ 1.0000
+ 0.4100
+ 1.0000
+ 0.0000
+[torch.FloatTensor of size 10x1]
+, Variable containing:
+ 0.8900
+ 0.6900
+ 0.0000
+ 1.0000
+ 1.0000
+ 0.9400
+ 0.5800
+ 0.9700
+ 0.0000
+ 1.0000
+[torch.FloatTensor of size 10x1]
+, Variable containing:
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.9700  0.9400  0.0000  0.0000  0.0000  0.0000
+ 1.0000  1.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.5700  0.4800  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  1.0000  0.9600  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  1.0000  1.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.5000  0.5500  0.0000  0.0000
+[torch.FloatTensor of size 10x10]
+, Variable containing:
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.7900  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.1100  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 1.0000  0.9400  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.9200  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.9100  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0700  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.9900  0.9900  0.0000  0.0000
+[torch.FloatTensor of size 10x10]
+])
+(49, 'losssssssssssssssssssss', 43.4301, 'loss_pos', 36.0226, 'loss_reg', 29.6303)
+(50, 'losssssssssssssssssssss', 42.2494, 'loss_pos', 34.8761, 'loss_reg', 29.4934)
+(51, 'losssssssssssssssssssss', 41.3667, 'loss_pos', 34.0235, 'loss_reg', 29.373)
+(52, 'losssssssssssssssssssss', 40.682, 'loss_pos', 33.3698, 'loss_reg', 29.249)
+(53, 'losssssssssssssssssssss', 40.1306, 'loss_pos', 32.8539, 'loss_reg', 29.1069)
+(54, 'losssssssssssssssssssss', 39.6138, 'loss_pos', 32.3718, 'loss_reg', 28.968)
+(55, 'losssssssssssssssssssss', 39.0884, 'loss_pos', 31.8847, 'loss_reg', 28.8149)
+(56, 'losssssssssssssssssssss', 38.5489, 'loss_pos', 31.3815, 'loss_reg', 28.6699)
+(57, 'losssssssssssssssssssss', 38.1622, 'loss_pos', 31.0334, 'loss_reg', 28.5152)
+(58, 'losssssssssssssssssssss', 37.854, 'loss_pos', 30.7622, 'loss_reg', 28.3673)
+(59, 'losssssssssssssssssssss', 37.558, 'loss_pos', 30.5064, 'loss_reg', 28.2064)
+(60, 'losssssssssssssssssssss', 37.2356, 'loss_pos', 30.2227, 'loss_reg', 28.0516)
+(61, 'losssssssssssssssssssss', 36.9054, 'loss_pos', 29.9358, 'loss_reg', 27.8782)
+(62, 'losssssssssssssssssssss', 36.571, 'loss_pos', 29.6463, 'loss_reg', 27.6987)
+(63, 'losssssssssssssssssssss', 36.2173, 'loss_pos', 29.3382, 'loss_reg', 27.5162)
+(64, 'losssssssssssssssssssss', 35.8643, 'loss_pos', 29.0293, 'loss_reg', 27.3398)
+(65, 'losssssssssssssssssssss', 35.5615, 'loss_pos', 28.7762, 'loss_reg', 27.1414)
+(66, 'losssssssssssssssssssss', 35.2683, 'loss_pos', 28.532, 'loss_reg', 26.9452)
+(67, 'losssssssssssssssssssss', 34.9899, 'loss_pos', 28.2992, 'loss_reg', 26.7631)
+(68, 'losssssssssssssssssssss', 34.7015, 'loss_pos', 28.0413, 'loss_reg', 26.6408)
+(69, 'losssssssssssssssssssss', 34.371, 'loss_pos', 27.721, 'loss_reg', 26.5998)
+(70, 'losssssssssssssssssssss', 34.068, 'loss_pos', 27.4173, 'loss_reg', 26.6028)
+(71, 'losssssssssssssssssssss', 33.7469, 'loss_pos', 27.0821, 'loss_reg', 26.6594)
+(72, 'losssssssssssssssssssss', 33.372, 'loss_pos', 26.6774, 'loss_reg', 26.7784)
+(73, 'losssssssssssssssssssss', 32.9882, 'loss_pos', 26.2586, 'loss_reg', 26.9186)
+(74, 'losssssssssssssssssssss', 32.5753, 'loss_pos', 25.797, 'loss_reg', 27.1134)
+(75, 'losssssssssssssssssssss', 32.1759, 'loss_pos', 25.3636, 'loss_reg', 27.2491)
+(76, 'losssssssssssssssssssss', 31.7924, 'loss_pos', 24.9576, 'loss_reg', 27.3389)
+(77, 'losssssssssssssssssssss', 31.5178, 'loss_pos', 24.6931, 'loss_reg', 27.2989)
+(78, 'losssssssssssssssssssss', 31.2656, 'loss_pos', 24.4631, 'loss_reg', 27.21)
+(79, 'losssssssssssssssssssss', 31.0539, 'loss_pos', 24.2739, 'loss_reg', 27.12)
+(80, 'losssssssssssssssssssss', 30.8841, 'loss_pos', 24.1301, 'loss_reg', 27.0162)
+(81, 'losssssssssssssssssssss', 30.8158, 'loss_pos', 24.0928, 'loss_reg', 26.8916)
+(82, 'losssssssssssssssssssss', 30.7516, 'loss_pos', 24.0588, 'loss_reg', 26.7711)
+(83, 'losssssssssssssssssssss', 30.6903, 'loss_pos', 24.0257, 'loss_reg', 26.6582)
+(84, 'losssssssssssssssssssss', 30.6175, 'loss_pos', 23.9795, 'loss_reg', 26.5521)
+(85, 'losssssssssssssssssssss', 30.5295, 'loss_pos', 23.9132, 'loss_reg', 26.4651)
+(86, 'losssssssssssssssssssss', 30.4391, 'loss_pos', 23.8448, 'loss_reg', 26.3772)
+(87, 'losssssssssssssssssssss', 30.3494, 'loss_pos', 23.7782, 'loss_reg', 26.285)
+(88, 'losssssssssssssssssssss', 30.2445, 'loss_pos', 23.6972, 'loss_reg', 26.1892)
+(89, 'losssssssssssssssssssss', 30.1303, 'loss_pos', 23.6048, 'loss_reg', 26.102)
+(90, 'losssssssssssssssssssss', 30.0196, 'loss_pos', 23.5153, 'loss_reg', 26.0173)
+(91, 'losssssssssssssssssssss', 29.9053, 'loss_pos', 23.4224, 'loss_reg', 25.9315)
+(92, 'losssssssssssssssssssss', 29.7739, 'loss_pos', 23.3135, 'loss_reg', 25.8414)
+(93, 'losssssssssssssssssssss', 29.6039, 'loss_pos', 23.1634, 'loss_reg', 25.7618)
+(94, 'losssssssssssssssssssss', 29.3909, 'loss_pos', 22.9713, 'loss_reg', 25.6783)
+(95, 'losssssssssssssssssssss', 29.1159, 'loss_pos', 22.7164, 'loss_reg', 25.5978)
+(96, 'losssssssssssssssssssss', 28.8167, 'loss_pos', 22.4374, 'loss_reg', 25.517)
+(97, 'losssssssssssssssssssss', 28.607, 'loss_pos', 22.2356, 'loss_reg', 25.4858)
+('epoch 98 before_decoder', [Variable containing:
+ 0.0000
+ 1.0000
+ 1.0000
+ 0.0000
+ 0.0000
+ 0.2100
+ 1.0000
+ 0.0000
+ 1.0000
+ 0.0000
+[torch.FloatTensor of size 10x1]
+, Variable containing:
+ 1.0000
+ 0.0000
+ 0.0000
+ 0.4900
+ 1.0000
+ 0.5900
+ 0.0000
+ 1.0000
+ 0.0000
+ 0.5200
+[torch.FloatTensor of size 10x1]
+, Variable containing:
+    0     0     0     0     0     0     0     0     0     0
+    0     0     0     0     1     1     0     0     0     0
+    1     1     0     0     0     0     0     0     0     0
+    1     1     0     0     0     0     0     0     0     0
+    0     0     0     0     0     0     0     0     0     0
+    0     0     0     0     0     0     0     0     0     0
+    0     0     0     0     1     1     0     0     0     0
+    0     0     0     0     0     0     0     0     0     0
+    0     0     0     0     0     0     1     1     0     0
+    0     0     0     0     0     0     1     1     0     0
+[torch.FloatTensor of size 10x10]
+, Variable containing:
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 1.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.3200  0.4800  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  1.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  1.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.5400  0.3100  0.0000  0.0000
+[torch.FloatTensor of size 10x10]
+])
+(98, 'losssssssssssssssssssss', 28.3833, 'loss_pos', 22.0225, 'loss_reg', 25.4434)
+(99, 'losssssssssssssssssssss', 28.1369, 'loss_pos', 21.7883, 'loss_reg', 25.3944)
+(100, 'losssssssssssssssssssss', 27.8386, 'loss_pos', 21.4995, 'loss_reg', 25.3564)
+(101, 'losssssssssssssssssssss', 27.5077, 'loss_pos', 21.1812, 'loss_reg', 25.306)
+(102, 'losssssssssssssssssssss', 27.1291, 'loss_pos', 20.8128, 'loss_reg', 25.2649)
+(103, 'losssssssssssssssssssss', 26.6888, 'loss_pos', 20.3808, 'loss_reg', 25.2321)
+(104, 'losssssssssssssssssssss', 26.1723, 'loss_pos', 19.8722, 'loss_reg', 25.2003)
+(105, 'losssssssssssssssssssss', 25.5357, 'loss_pos', 19.2408, 'loss_reg', 25.1793)
+(106, 'losssssssssssssssssssss', 24.7753, 'loss_pos', 18.4889, 'loss_reg', 25.1456)
+(107, 'losssssssssssssssssssss', 23.855, 'loss_pos', 17.5803, 'loss_reg', 25.0989)
+(108, 'losssssssssssssssssssss', 23.1501, 'loss_pos', 16.8562, 'loss_reg', 25.1757)
+(109, 'losssssssssssssssssssss', 22.5042, 'loss_pos', 16.1885, 'loss_reg', 25.2626)
+(110, 'losssssssssssssssssssss', 21.9065, 'loss_pos', 15.5653, 'loss_reg', 25.3648)
+(111, 'losssssssssssssssssssss', 21.2782, 'loss_pos', 14.9217, 'loss_reg', 25.4263)
+(112, 'losssssssssssssssssssss', 20.6638, 'loss_pos', 14.2939, 'loss_reg', 25.4796)
+(113, 'losssssssssssssssssssss', 20.2765, 'loss_pos', 13.9223, 'loss_reg', 25.4167)
+(114, 'losssssssssssssssssssss', 19.9122, 'loss_pos', 13.5839, 'loss_reg', 25.3131)
+(115, 'losssssssssssssssssssss', 19.6678, 'loss_pos', 13.3429, 'loss_reg', 25.2996)
+(116, 'losssssssssssssssssssss', 19.52, 'loss_pos', 13.1851, 'loss_reg', 25.3398)
+(117, 'losssssssssssssssssssss', 19.4257, 'loss_pos', 13.0778, 'loss_reg', 25.3917)
+(118, 'losssssssssssssssssssss', 19.3994, 'loss_pos', 13.0601, 'loss_reg', 25.3571)
+(119, 'losssssssssssssssssssss', 19.4011, 'loss_pos', 13.0647, 'loss_reg', 25.3455)
+(120, 'losssssssssssssssssssss', 19.387, 'loss_pos', 13.0549, 'loss_reg', 25.3281)
+(121, 'losssssssssssssssssssss', 19.3765, 'loss_pos', 13.0426, 'loss_reg', 25.3356)
+(122, 'losssssssssssssssssssss', 19.4002, 'loss_pos', 13.0632, 'loss_reg', 25.3479)
+(123, 'losssssssssssssssssssss', 19.3775, 'loss_pos', 13.0481, 'loss_reg', 25.3174)
+(124, 'losssssssssssssssssssss', 19.3808, 'loss_pos', 13.0562, 'loss_reg', 25.2985)
+(125, 'losssssssssssssssssssss', 19.3994, 'loss_pos', 13.0757, 'loss_reg', 25.2949)
+(126, 'losssssssssssssssssssss', 19.3763, 'loss_pos', 13.0544, 'loss_reg', 25.2876)
+(127, 'losssssssssssssssssssss', 19.3872, 'loss_pos', 13.0637, 'loss_reg', 25.2939)
+(128, 'losssssssssssssssssssss', 19.3688, 'loss_pos', 13.0479, 'loss_reg', 25.2835)
+(129, 'losssssssssssssssssssss', 19.3853, 'loss_pos', 13.0715, 'loss_reg', 25.2552)
+(130, 'losssssssssssssssssssss', 19.4114, 'loss_pos', 13.0942, 'loss_reg', 25.2689)
+(131, 'losssssssssssssssssssss', 19.3709, 'loss_pos', 13.0557, 'loss_reg', 25.2609)
+(132, 'losssssssssssssssssssss', 19.3742, 'loss_pos', 13.0586, 'loss_reg', 25.2623)
+(133, 'losssssssssssssssssssss', 19.3881, 'loss_pos', 13.076, 'loss_reg', 25.2487)
+(134, 'losssssssssssssssssssss', 19.3751, 'loss_pos', 13.0625, 'loss_reg', 25.2504)
+(135, 'losssssssssssssssssssss', 19.3918, 'loss_pos', 13.0759, 'loss_reg', 25.2636)
+(136, 'losssssssssssssssssssss', 19.3703, 'loss_pos', 13.0574, 'loss_reg', 25.2518)
+(137, 'losssssssssssssssssssss', 19.3778, 'loss_pos', 13.0652, 'loss_reg', 25.2507)
+(138, 'losssssssssssssssssssss', 19.3933, 'loss_pos', 13.079, 'loss_reg', 25.257)
+(139, 'losssssssssssssssssssss', 19.3794, 'loss_pos', 13.0695, 'loss_reg', 25.2397)
+(140, 'losssssssssssssssssssss', 19.3697, 'loss_pos', 13.057, 'loss_reg', 25.2508)
+(141, 'losssssssssssssssssssss', 19.4019, 'loss_pos', 13.0861, 'loss_reg', 25.2631)
+(142, 'losssssssssssssssssssss', 19.3715, 'loss_pos', 13.061, 'loss_reg', 25.2423)
+(143, 'losssssssssssssssssssss', 19.3705, 'loss_pos', 13.0591, 'loss_reg', 25.2455)
+(144, 'losssssssssssssssssssss', 19.3949, 'loss_pos', 13.0765, 'loss_reg', 25.2734)
+(145, 'losssssssssssssssssssss', 19.3686, 'loss_pos', 13.0546, 'loss_reg', 25.2561)
+(146, 'losssssssssssssssssssss', 19.3757, 'loss_pos', 13.0638, 'loss_reg', 25.2477)
+('epoch 147 before_decoder', [Variable containing:
+    0
+    1
+    1
+    0
+    0
+    1
+    1
+    0
+    1
+    0
+[torch.FloatTensor of size 10x1]
+, Variable containing:
+ 1.0000
+ 0.0000
+ 0.0000
+ 1.0000
+ 1.0000
+ 0.2600
+ 0.0000
+ 1.0000
+ 0.0000
+ 1.0000
+[torch.FloatTensor of size 10x1]
+, Variable containing:
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  1.0000  0.9900  0.0000  0.0000  0.0000  0.0000
+ 1.0000  1.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 1.0000  1.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  1.0000  1.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  1.0000  1.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  1.0000  1.0000  0.0000  0.0000
+[torch.FloatTensor of size 10x10]
+, Variable containing:
+    0     0     0     0     0     0     0     0     0     0
+    1     0     0     0     0     0     0     0     0     0
+    0     0     0     0     0     0     0     0     0     0
+    0     0     0     0     0     0     0     0     0     0
+    0     0     0     0     0     0     0     0     0     0
+    0     0     0     0     1     0     0     0     0     0
+    0     0     0     0     0     0     0     1     0     0
+    0     0     0     0     0     0     0     0     0     0
+    0     0     0     0     0     0     0     0     0     0
+    0     0     0     0     0     0     0     0     0     0
+[torch.FloatTensor of size 10x10]
+])
+(147, 'losssssssssssssssssssss', 19.3817, 'loss_pos', 13.0697, 'loss_reg', 25.2481)
+(148, 'losssssssssssssssssssss', 19.3688, 'loss_pos', 13.054, 'loss_reg', 25.2589)
+(149, 'losssssssssssssssssssss', 19.386, 'loss_pos', 13.0674, 'loss_reg', 25.2744)
+(150, 'losssssssssssssssssssss', 19.3683, 'loss_pos', 13.0535, 'loss_reg', 25.2595)
+(151, 'losssssssssssssssssssss', 19.3781, 'loss_pos', 13.0643, 'loss_reg', 25.2552)
+(152, 'losssssssssssssssssssss', 19.403, 'loss_pos', 13.0831, 'loss_reg', 25.2794)
+(153, 'losssssssssssssssssssss', 19.3649, 'loss_pos', 13.0456, 'loss_reg', 25.277)
+(154, 'losssssssssssssssssssss', 19.3732, 'loss_pos', 13.0546, 'loss_reg', 25.2742)
+(155, 'losssssssssssssssssssss', 19.3894, 'loss_pos', 13.0713, 'loss_reg', 25.2726)
+(156, 'losssssssssssssssssssss', 19.3714, 'loss_pos', 13.0544, 'loss_reg', 25.2677)
+(157, 'losssssssssssssssssssss', 19.3853, 'loss_pos', 13.0656, 'loss_reg', 25.2788)
+(158, 'losssssssssssssssssssss', 19.3682, 'loss_pos', 13.0472, 'loss_reg', 25.2843)
+(159, 'losssssssssssssssssssss', 19.3677, 'loss_pos', 13.0454, 'loss_reg', 25.2891)
+(160, 'losssssssssssssssssssss', 19.3895, 'loss_pos', 13.0674, 'loss_reg', 25.2883)
+(161, 'losssssssssssssssssssss', 19.3701, 'loss_pos', 13.0513, 'loss_reg', 25.2754)
+(162, 'losssssssssssssssssssss', 19.3678, 'loss_pos', 13.0468, 'loss_reg', 25.2841)
+(163, 'losssssssssssssssssssss', 19.3745, 'loss_pos', 13.0484, 'loss_reg', 25.3043)
+(164, 'losssssssssssssssssssss', 19.3682, 'loss_pos', 13.0458, 'loss_reg', 25.2898)
+(165, 'losssssssssssssssssssss', 19.3786, 'loss_pos', 13.0541, 'loss_reg', 25.2979)
+(166, 'losssssssssssssssssssss', 19.3629, 'loss_pos', 13.0396, 'loss_reg', 25.2933)
+(167, 'losssssssssssssssssssss', 19.3734, 'loss_pos', 13.0508, 'loss_reg', 25.2905)
+(168, 'losssssssssssssssssssss', 19.3809, 'loss_pos', 13.0524, 'loss_reg', 25.3142)
+(169, 'losssssssssssssssssssss', 19.3711, 'loss_pos', 13.0478, 'loss_reg', 25.2933)
+(170, 'losssssssssssssssssssss', 19.3611, 'loss_pos', 13.0351, 'loss_reg', 25.304)
+(171, 'losssssssssssssssssssss', 19.3823, 'loss_pos', 13.0578, 'loss_reg', 25.2982)
+(172, 'losssssssssssssssssssss', 19.3721, 'loss_pos', 13.0498, 'loss_reg', 25.2889)
+(173, 'losssssssssssssssssssss', 19.3741, 'loss_pos', 13.048, 'loss_reg', 25.3046)
+(174, 'losssssssssssssssssssss', 19.3613, 'loss_pos', 13.0366, 'loss_reg', 25.2985)
+(175, 'losssssssssssssssssssss', 19.3629, 'loss_pos', 13.0386, 'loss_reg', 25.2972)
+(176, 'losssssssssssssssssssss', 19.3877, 'loss_pos', 13.0608, 'loss_reg', 25.3079)
+(177, 'losssssssssssssssssssss', 19.3893, 'loss_pos', 13.0707, 'loss_reg', 25.2743)
+(178, 'losssssssssssssssssssss', 19.3648, 'loss_pos', 13.0416, 'loss_reg', 25.2928)
+(179, 'losssssssssssssssssssss', 19.362, 'loss_pos', 13.037, 'loss_reg', 25.3002)
+(180, 'losssssssssssssssssssss', 19.3588, 'loss_pos', 13.0337, 'loss_reg', 25.3007)
+(181, 'losssssssssssssssssssss', 19.3886, 'loss_pos', 13.0609, 'loss_reg', 25.3109)
+(182, 'losssssssssssssssssssss', 19.3652, 'loss_pos', 13.0419, 'loss_reg', 25.2933)
+(183, 'losssssssssssssssssssss', 19.3643, 'loss_pos', 13.0408, 'loss_reg', 25.2942)
+(184, 'losssssssssssssssssssss', 19.36, 'loss_pos', 13.0347, 'loss_reg', 25.3011)
+(185, 'losssssssssssssssssssss', 19.3618, 'loss_pos', 13.0387, 'loss_reg', 25.2924)
+(186, 'losssssssssssssssssssss', 19.3774, 'loss_pos', 13.0488, 'loss_reg', 25.3143)
+(187, 'losssssssssssssssssssss', 19.3802, 'loss_pos', 13.0604, 'loss_reg', 25.2793)
+(188, 'losssssssssssssssssssss', 19.362, 'loss_pos', 13.0398, 'loss_reg', 25.2889)
+(189, 'losssssssssssssssssssss', 19.3665, 'loss_pos', 13.0387, 'loss_reg', 25.3112)
+(190, 'losssssssssssssssssssss', 19.3566, 'loss_pos', 13.0311, 'loss_reg', 25.3019)
+(191, 'losssssssssssssssssssss', 19.3853, 'loss_pos', 13.06, 'loss_reg', 25.3013)
+(192, 'losssssssssssssssssssss', 19.3714, 'loss_pos', 13.0506, 'loss_reg', 25.2831)
+(193, 'losssssssssssssssssssss', 19.363, 'loss_pos', 13.0417, 'loss_reg', 25.2852)
+(194, 'losssssssssssssssssssss', 19.3685, 'loss_pos', 13.0427, 'loss_reg', 25.303)
+(195, 'losssssssssssssssssssss', 19.3634, 'loss_pos', 13.0394, 'loss_reg', 25.2961)
+('epoch 196 before_decoder', [Variable containing:
+    0
+    1
+    1
+    0
+    0
+    1
+    1
+    0
+    1
+    0
+[torch.FloatTensor of size 10x1]
+, Variable containing:
+ 1.0000
+ 0.0100
+ 0.0000
+ 1.0000
+ 1.0000
+ 0.3000
+ 0.0000
+ 1.0000
+ 0.0000
+ 1.0000
+[torch.FloatTensor of size 10x1]
+, Variable containing:
+    0     0     0     0     0     0     0     0     0     0
+    0     0     0     0     1     1     0     0     0     0
+    1     1     0     0     0     0     0     0     0     0
+    1     1     0     0     0     0     0     0     0     0
+    0     0     0     0     0     0     0     0     0     0
+    0     0     0     0     0     0     0     0     0     0
+    0     0     0     0     1     1     0     0     0     0
+    0     0     0     0     0     0     0     0     0     0
+    0     0     0     0     0     0     1     1     0     0
+    0     0     0     0     0     0     1     1     0     0
+[torch.FloatTensor of size 10x10]
+, Variable containing:
+    0     0     0     0     0     0     0     0     0     0
+    1     0     0     0     0     0     0     0     0     0
+    0     0     0     0     0     0     0     0     0     0
+    0     0     0     0     0     0     0     0     0     0
+    0     0     0     0     0     0     0     0     0     0
+    0     0     0     0     1     0     0     0     0     0
+    0     0     0     0     0     0     0     1     0     0
+    0     0     0     0     0     0     0     0     0     0
+    0     0     0     0     0     0     0     0     0     0
+    0     0     0     0     0     0     0     0     0     0
+[torch.FloatTensor of size 10x10]
+])
+(196, 'losssssssssssssssssssss', 19.3639, 'loss_pos', 13.036, 'loss_reg', 25.3119)
+(197, 'losssssssssssssssssssss', 19.369, 'loss_pos', 13.0456, 'loss_reg', 25.2936)
+(198, 'losssssssssssssssssssss', 19.3602, 'loss_pos', 13.0358, 'loss_reg', 25.2978)
+(199, 'losssssssssssssssssssss', 19.3699, 'loss_pos', 13.0447, 'loss_reg', 25.3009)
+(200, 'losssssssssssssssssssss', 19.3623, 'loss_pos', 13.0402, 'loss_reg', 25.2883)
+(201, 'losssssssssssssssssssss', 19.3847, 'loss_pos', 13.0609, 'loss_reg', 25.295)
+(202, 'losssssssssssssssssssss', 19.359, 'loss_pos', 13.0329, 'loss_reg', 25.3044)
+(203, 'losssssssssssssssssssss', 19.3533, 'loss_pos', 13.0272, 'loss_reg', 25.3043)
+(204, 'losssssssssssssssssssss', 19.3661, 'loss_pos', 13.0376, 'loss_reg', 25.314)
+(205, 'losssssssssssssssssssss', 19.3625, 'loss_pos', 13.0389, 'loss_reg', 25.2946)
+(206, 'losssssssssssssssssssss', 19.3667, 'loss_pos', 13.0394, 'loss_reg', 25.3091)
+(207, 'losssssssssssssssssssss', 19.3679, 'loss_pos', 13.0431, 'loss_reg', 25.2992)
+(208, 'losssssssssssssssssssss', 19.355, 'loss_pos', 13.0299, 'loss_reg', 25.3005)
+(209, 'losssssssssssssssssssss', 19.3617, 'loss_pos', 13.0356, 'loss_reg', 25.3045)
+(210, 'losssssssssssssssssssss', 19.3643, 'loss_pos', 13.0411, 'loss_reg', 25.2926)
+(211, 'losssssssssssssssssssss', 19.3738, 'loss_pos', 13.0494, 'loss_reg', 25.2974)
+(212, 'losssssssssssssssssssss', 19.3609, 'loss_pos', 13.0352, 'loss_reg', 25.3031)
+(213, 'losssssssssssssssssssss', 19.3581, 'loss_pos', 13.0294, 'loss_reg', 25.3151)
+(214, 'losssssssssssssssssssss', 19.3543, 'loss_pos', 13.0272, 'loss_reg', 25.3082)
+(215, 'losssssssssssssssssssss', 19.3632, 'loss_pos', 13.0409, 'loss_reg', 25.2891)
+(216, 'losssssssssssssssssssss', 19.3681, 'loss_pos', 13.0442, 'loss_reg', 25.2958)
+(217, 'losssssssssssssssssssss', 19.3689, 'loss_pos', 13.0466, 'loss_reg', 25.2893)
+(218, 'losssssssssssssssssssss', 19.3602, 'loss_pos', 13.0321, 'loss_reg', 25.3125)
+(219, 'losssssssssssssssssssss', 19.3621, 'loss_pos', 13.0357, 'loss_reg', 25.3055)
+(220, 'losssssssssssssssssssss', 19.3653, 'loss_pos', 13.0432, 'loss_reg', 25.2885)
+(221, 'losssssssssssssssssssss', 19.3834, 'loss_pos', 13.0624, 'loss_reg', 25.284)
+(222, 'losssssssssssssssssssss', 19.3617, 'loss_pos', 13.0386, 'loss_reg', 25.2924)
+(223, 'losssssssssssssssssssss', 19.3597, 'loss_pos', 13.0316, 'loss_reg', 25.3125)
+(224, 'losssssssssssssssssssss', 19.3625, 'loss_pos', 13.0324, 'loss_reg', 25.3204)
+(225, 'losssssssssssssssssssss', 19.357, 'loss_pos', 13.0302, 'loss_reg', 25.3072)
+(226, 'losssssssssssssssssssss', 19.3722, 'loss_pos', 13.0457, 'loss_reg', 25.3061)
+(227, 'losssssssssssssssssssss', 19.378, 'loss_pos', 13.056, 'loss_reg', 25.2877)
+(228, 'losssssssssssssssssssss', 19.3544, 'loss_pos', 13.028, 'loss_reg', 25.3056)
+(229, 'losssssssssssssssssssss', 19.3616, 'loss_pos', 13.0347, 'loss_reg', 25.3076)
+(230, 'losssssssssssssssssssss', 19.3534, 'loss_pos', 13.0262, 'loss_reg', 25.309)
+(231, 'losssssssssssssssssssss', 19.3699, 'loss_pos', 13.0452, 'loss_reg', 25.2987)
+(232, 'losssssssssssssssssssss', 19.362, 'loss_pos', 13.0391, 'loss_reg', 25.2915)
+(233, 'losssssssssssssssssssss', 19.3696, 'loss_pos', 13.0442, 'loss_reg', 25.3018)
+(234, 'losssssssssssssssssssss', 19.3567, 'loss_pos', 13.0298, 'loss_reg', 25.3075)
+(235, 'losssssssssssssssssssss', 19.3607, 'loss_pos', 13.0354, 'loss_reg', 25.3013)
+(236, 'losssssssssssssssssssss', 19.3593, 'loss_pos', 13.0306, 'loss_reg', 25.3146)
+(237, 'losssssssssssssssssssss', 19.3644, 'loss_pos', 13.0391, 'loss_reg', 25.3013)
+(238, 'losssssssssssssssssssss', 19.3673, 'loss_pos', 13.0429, 'loss_reg', 25.2977)
+(239, 'losssssssssssssssssssss', 19.3663, 'loss_pos', 13.044, 'loss_reg', 25.2895)
+(240, 'losssssssssssssssssssss', 19.3644, 'loss_pos', 13.0413, 'loss_reg', 25.2924)
+(241, 'losssssssssssssssssssss', 19.3649, 'loss_pos', 13.0372, 'loss_reg', 25.311)
+(242, 'losssssssssssssssssssss', 19.3559, 'loss_pos', 13.0294, 'loss_reg', 25.3061)
+(243, 'losssssssssssssssssssss', 19.3579, 'loss_pos', 13.0293, 'loss_reg', 25.3144)
+(244, 'losssssssssssssssssssss', 19.3569, 'loss_pos', 13.0318, 'loss_reg', 25.3002)
+('epoch 245 before_decoder', [Variable containing:
+    0
+    1
+    1
+    0
+    0
+    1
+    1
+    0
+    1
+    0
+[torch.FloatTensor of size 10x1]
+, Variable containing:
+ 1.0000
+ 0.0000
+ 0.0000
+ 1.0000
+ 1.0000
+ 0.3100
+ 0.0000
+ 1.0000
+ 0.0000
+ 1.0000
+[torch.FloatTensor of size 10x1]
+, Variable containing:
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  1.0000  0.9900  0.0000  0.0000  0.0000  0.0000
+ 1.0000  1.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 1.0000  1.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  1.0000  1.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.9900  1.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  1.0000  1.0000  0.0000  0.0000
+[torch.FloatTensor of size 10x10]
+, Variable containing:
+    0     0     0     0     0     0     0     0     0     0
+    1     0     0     0     0     0     0     0     0     0
+    0     0     0     0     0     0     0     0     0     0
+    0     0     0     0     0     0     0     0     0     0
+    0     0     0     0     0     0     0     0     0     0
+    0     0     0     0     1     0     0     0     0     0
+    0     0     0     0     0     0     0     1     0     0
+    0     0     0     0     0     0     0     0     0     0
+    0     0     0     0     0     0     0     0     0     0
+    0     0     0     0     0     0     0     0     0     0
+[torch.FloatTensor of size 10x10]
+])
+(245, 'losssssssssssssssssssss', 19.365, 'loss_pos', 13.0417, 'loss_reg', 25.2931)
+(246, 'losssssssssssssssssssss', 19.3589, 'loss_pos', 13.0303, 'loss_reg', 25.3145)
+(247, 'losssssssssssssssssssss', 19.3731, 'loss_pos', 13.05, 'loss_reg', 25.2923)
+(248, 'losssssssssssssssssssss', 19.3609, 'loss_pos', 13.0332, 'loss_reg', 25.3107)
+(249, 'losssssssssssssssssssss', 19.3555, 'loss_pos', 13.0289, 'loss_reg', 25.3066)
+(250, 'losssssssssssssssssssss', 19.3596, 'loss_pos', 13.0348, 'loss_reg', 25.2994)
+(251, 'losssssssssssssssssssss', 19.367, 'loss_pos', 13.0397, 'loss_reg', 25.309)
+(252, 'losssssssssssssssssssss', 19.3606, 'loss_pos', 13.0365, 'loss_reg', 25.2967)
+(253, 'losssssssssssssssssssss', 19.3616, 'loss_pos', 13.0353, 'loss_reg', 25.3052)
+(254, 'losssssssssssssssssssss', 19.3525, 'loss_pos', 13.0254, 'loss_reg', 25.3082)
+(255, 'losssssssssssssssssssss', 19.363, 'loss_pos', 13.0393, 'loss_reg', 25.2947)
+(256, 'losssssssssssssssssssss', 19.3625, 'loss_pos', 13.0351, 'loss_reg', 25.3096)
+(257, 'losssssssssssssssssssss', 19.3669, 'loss_pos', 13.0423, 'loss_reg', 25.2982)
+(258, 'losssssssssssssssssssss', 19.3726, 'loss_pos', 13.0474, 'loss_reg', 25.3012)
+(259, 'losssssssssssssssssssss', 19.3517, 'loss_pos', 13.0246, 'loss_reg', 25.3085)
+(260, 'losssssssssssssssssssss', 19.3582, 'loss_pos', 13.0344, 'loss_reg', 25.2954)
+(261, 'losssssssssssssssssssss', 19.3682, 'loss_pos', 13.0429, 'loss_reg', 25.3011)
+(262, 'losssssssssssssssssssss', 19.3608, 'loss_pos', 13.0352, 'loss_reg', 25.3023)
+(263, 'losssssssssssssssssssss', 19.3677, 'loss_pos', 13.0403, 'loss_reg', 25.3095)
+(264, 'losssssssssssssssssssss', 19.3519, 'loss_pos', 13.0248, 'loss_reg', 25.3083)
+(265, 'losssssssssssssssssssss', 19.3628, 'loss_pos', 13.0407, 'loss_reg', 25.2884)
+(266, 'losssssssssssssssssssss', 19.3654, 'loss_pos', 13.0409, 'loss_reg', 25.2978)
+(267, 'losssssssssssssssssssss', 19.367, 'loss_pos', 13.0444, 'loss_reg', 25.2906)
+(268, 'losssssssssssssssssssss', 19.3669, 'loss_pos', 13.0399, 'loss_reg', 25.3077)
+(269, 'losssssssssssssssssssss', 19.3556, 'loss_pos', 13.0292, 'loss_reg', 25.3055)
+(270, 'losssssssssssssssssssss', 19.354, 'loss_pos', 13.0276, 'loss_reg', 25.3053)
+(271, 'losssssssssssssssssssss', 19.365, 'loss_pos', 13.0374, 'loss_reg', 25.3104)
+(272, 'losssssssssssssssssssss', 19.3613, 'loss_pos', 13.0379, 'loss_reg', 25.2936)
+(273, 'losssssssssssssssssssss', 19.3717, 'loss_pos', 13.048, 'loss_reg', 25.2946)
+(274, 'losssssssssssssssssssss', 19.3606, 'loss_pos', 13.0367, 'loss_reg', 25.2954)
+(275, 'losssssssssssssssssssss', 19.3607, 'loss_pos', 13.0354, 'loss_reg', 25.3009)
+(276, 'losssssssssssssssssssss', 19.3579, 'loss_pos', 13.0293, 'loss_reg', 25.3144)
+(277, 'losssssssssssssssssssss', 19.3642, 'loss_pos', 13.039, 'loss_reg', 25.3009)
+(278, 'losssssssssssssssssssss', 19.3632, 'loss_pos', 13.037, 'loss_reg', 25.3045)
+(279, 'losssssssssssssssssssss', 19.3556, 'loss_pos', 13.0301, 'loss_reg', 25.3023)
+(280, 'losssssssssssssssssssss', 19.3598, 'loss_pos', 13.034, 'loss_reg', 25.3033)
+(281, 'losssssssssssssssssssss', 19.373, 'loss_pos', 13.0472, 'loss_reg', 25.3032)
+(282, 'losssssssssssssssssssss', 19.358, 'loss_pos', 13.0317, 'loss_reg', 25.3053)
+(283, 'losssssssssssssssssssss', 19.3601, 'loss_pos', 13.0316, 'loss_reg', 25.314)
+(284, 'losssssssssssssssssssss', 19.3538, 'loss_pos', 13.0276, 'loss_reg', 25.3048)
+(285, 'losssssssssssssssssssss', 19.3547, 'loss_pos', 13.0285, 'loss_reg', 25.3046)
+(286, 'losssssssssssssssssssss', 19.3662, 'loss_pos', 13.0404, 'loss_reg', 25.3033)
+(287, 'losssssssssssssssssssss', 19.3714, 'loss_pos', 13.049, 'loss_reg', 25.2896)
+(288, 'losssssssssssssssssssss', 19.3608, 'loss_pos', 13.0328, 'loss_reg', 25.3119)
+(289, 'losssssssssssssssssssss', 19.3613, 'loss_pos', 13.0365, 'loss_reg', 25.2994)
+(290, 'losssssssssssssssssssss', 19.3532, 'loss_pos', 13.0268, 'loss_reg', 25.3055)
+(291, 'losssssssssssssssssssss', 19.3625, 'loss_pos', 13.0345, 'loss_reg', 25.3121)
+(292, 'losssssssssssssssssssss', 19.3681, 'loss_pos', 13.0441, 'loss_reg', 25.2961)
+(293, 'losssssssssssssssssssss', 19.3692, 'loss_pos', 13.0422, 'loss_reg', 25.3079)
+('epoch 294 before_decoder', [Variable containing:
+    0
+    1
+    1
+    0
+    0
+    1
+    1
+    0
+    1
+    0
+[torch.FloatTensor of size 10x1]
+, Variable containing:
+ 1.0000
+ 0.0000
+ 0.0000
+ 1.0000
+ 1.0000
+ 0.3100
+ 0.0000
+ 1.0000
+ 0.0000
+ 1.0000
+[torch.FloatTensor of size 10x1]
+, Variable containing:
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  1.0000  0.9900  0.0000  0.0000  0.0000  0.0000
+ 1.0000  1.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 1.0000  1.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  1.0000  1.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  1.0000  1.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  1.0000  1.0000  0.0000  0.0000
+[torch.FloatTensor of size 10x10]
+, Variable containing:
+    0     0     0     0     0     0     0     0     0     0
+    1     0     0     0     0     0     0     0     0     0
+    0     0     0     0     0     0     0     0     0     0
+    0     0     0     0     0     0     0     0     0     0
+    0     0     0     0     0     0     0     0     0     0
+    0     0     0     0     1     0     0     0     0     0
+    0     0     0     0     0     0     0     1     0     0
+    0     0     0     0     0     0     0     0     0     0
+    0     0     0     0     0     0     0     0     0     0
+    0     0     0     0     0     0     0     0     0     0
+[torch.FloatTensor of size 10x10]
+])
+(294, 'losssssssssssssssssssss', 19.3574, 'loss_pos', 13.033, 'loss_reg', 25.2976)
+(295, 'losssssssssssssssssssss', 19.3583, 'loss_pos', 13.0346, 'loss_reg', 25.2946)
+(296, 'losssssssssssssssssssss', 19.3603, 'loss_pos', 13.032, 'loss_reg', 25.3128)
+(297, 'losssssssssssssssssssss', 19.3691, 'loss_pos', 13.0443, 'loss_reg', 25.2989)
+(298, 'losssssssssssssssssssss', 19.365, 'loss_pos', 13.0378, 'loss_reg', 25.3086)
+(299, 'losssssssssssssssssssss', 19.3644, 'loss_pos', 13.0418, 'loss_reg', 25.2902)
+('embeddings', Variable containing:
+    1     0     0     0     0     0     0     0     0     0
+    0     1     0     0     0     0     0     0     0     0
+    0     0     1     0     0     0     0     0     0     0
+    0     0     0     1     0     0     0     0     0     0
+    0     0     0     0     1     0     0     0     0     0
+    0     0     0     0     0     1     0     0     0     0
+    0     0     0     0     0     0     1     0     0     0
+    0     0     0     0     0     0     0     1     0     0
+    0     0     0     0     0     0     0     0     1     0
+    0     0     0     0     0     0     0     0     0     1
+[torch.FloatTensor of size 10x10]
+)
+('unifications', Variable containing:
+
+Columns 0 to 9
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.5292  0.0000  1.0000  1.0000
+ 0.0000  0.0000  0.0000  0.0000  0.4878  0.0000  0.8485  1.0000  0.0000  0.0002
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.9596  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.2812  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  0.0000  0.8730  1.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  1.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  1.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+ 0.0000  0.0000  0.0000  1.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.0000
+
+Columns 10 to 17
+ 0.0000  0.0000  0.0000  0.0000  0.0000  0.0000  0.3853  0.0000
+ 0.2912  1.0000  0.0000  0.0000  0.0000  0.0000  0.1608  0.0000
+ 0.2340  0.0000  1.0000  0.0000  1.0000  0.0000  0.4255  1.0000
+ 0.3728  0.0000  0.0000  1.0000  0.0000  1.0000  0.0000  0.0000
+ 0.4208  0.0000  0.0000  0.0000  0.0000  0.0000  0.3946  0.0000
+ 0.3166  0.0000  0.0000  0.0000  0.0000  0.0000  0.4132  0.0000
+ 0.3413  0.0000  0.0000  0.0000  0.0000  0.0000  0.1639  0.0000
+ 0.1045  0.0000  0.0000  0.0000  0.0000  0.0000  0.3102  0.0000
+ 0.3747  0.0000  0.0000  0.0000  0.0000  0.0000  0.0821  0.0000
+ 0.4200  0.0000  0.0000  0.0000  0.0000  0.0000  0.4341  0.0000
+[torch.FloatTensor of size 10x18]
+)
+('accuracy', 12.0)
+('compress', 26.0)
+> /om/user/campero/diff-Theory-ILP/Sparsev1-Learn-family.py(200)<module>()
+-> rules[0][0]
+(Pdb)

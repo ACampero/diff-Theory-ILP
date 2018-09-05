@@ -11,9 +11,9 @@ import pdb
 
 
 ##------DATA--------
-num_constants = 11
-background_predicates =[0,1]
-intensional_predicates=[2,3]
+num_constants = 10
+background_predicates =[0,1,2,3]
+intensional_predicates=[4,5]
 
 ##Background Knowledge
 zero_extension = torch.zeros(1,num_constants).view(-1,1)
@@ -22,17 +22,28 @@ succ_extension = torch.eye(num_constants-1,num_constants-1)
 succ_extension = torch.cat((torch.zeros(num_constants-1,1),succ_extension),1)
 succ_extension = torch.cat((succ_extension,torch.zeros(1,num_constants)),0)
 
+pred1_extension = torch.eye(num_constants-2,num_constants-2)
+pred1_extension = torch.cat((torch.zeros(num_constants-2,2),pred1_extension),1)
+pred1_extension = torch.cat((pred1_extension,torch.zeros(2,num_constants)),0)
+
+pred3_extension = torch.eye(num_constants-3,num_constants-3)
+pred3_extension = torch.cat((torch.zeros(num_constants-3,3),pred3_extension),1)
+pred3_extension = torch.cat((pred3_extension,torch.zeros(3,num_constants)),0)
+
+
 #Intensional Predicates
 aux_extension = torch.zeros(num_constants,num_constants)
-even_extension = torch.zeros(1,num_constants).view(-1,1)
+aux2_extension= torch.zeros(num_constants,num_constants)
+target_extension = torch.zeros(1,num_constants).view(-1,1)
 
+valuation_init = [Variable(zero_extension), Variable(succ_extension), Variable(pred1_extension), Variable(pred3_extension),Variable(aux_extension),Variable(target_extension)]
 ##Target
 target = Variable(torch.zeros(1,num_constants)).view(-1,1)
-steps = 6
-even = [0,2,4,6,8,10]
-for integer in even:
+target_pos = [0,5]
+for integer in target_pos:
     target[integer,0]=1
 
+steps = 8
 num_rules = 3
 rules_str = [1,2,3]
 
@@ -50,7 +61,6 @@ rules_str = [1,2,3]
 
 
 ##Valuation
-valuation_init = [Variable(zero_extension), Variable(succ_extension), Variable(aux_extension), Variable(even_extension)]
 num_predicates= len(valuation_init)
 num_intensional_predicates = len(intensional_predicates)
 num_feat = num_predicates
@@ -132,12 +142,12 @@ def amalgamate(x,y):
     return x + y - x*y
 
 ##------SETUP------
-num_iters = 100
+num_iters = 50
 learning_rate = .1
 
 
 #embeddings = Variable(torch.rand(num_predicates, num_feat), requires_grad=True)
-embeddings = Variable(torch.eye(4), requires_grad=True)
+embeddings = Variable(torch.eye(num_feat), requires_grad=True)
 
 rules = Variable(torch.rand(num_rules, num_feat*3), requires_grad=True)
 #rule1 = torch.Tensor([0,0,0,1,1,0,0,0,0,1,0,0]).view(1,-1)

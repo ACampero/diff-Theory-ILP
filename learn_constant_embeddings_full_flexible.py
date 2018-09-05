@@ -103,72 +103,79 @@ def forward_step(facts,drop,training):
 
                 #####Condition to add new_fact only if it is not already known.
                 #new_facts = torch.cat((new_facts,new_fact.view(1,-1)),0)
-                #_,rules_aux_forw= torch.max(new_facts[:,:num_feat_predicates],1)
-                #_,obj_aux_forw= torch.max(new_facts[:,num_feat_predicates:num_feat_predicates+num_feat_constants],1)
-                #_,subj_aux_forw = torch.max(new_facts[:,num_feat_predicates+num_feat_constants:-1],1)
-                #data_aux_forw = torch.cat((rules_aux_forw.view(-1,1), obj_aux_forw.view(-1,1), subj_aux_forw.view(-1,1)),1)
-
+                #data_aux_forw = visualize_facts(new_facts,predicates,constants)
                 #equals, indi_prev = torch.max(torch.sum(data_aux_forw[-1].expand(data_aux_forw[:-1,:].size()) == data_aux_forw[:-1,:],1),0)          
                 #if equals.data[0] == 3:
                 #    if p.data[0] > new_facts[indi_prev.data[0],-1].data[0]:
                 #        new_facts[indi_prev.data[0]] = new_fact
                 #    new_facts = new_facts.narrow(0, 0, new_facts.size()[0]-1)
 
-                max_prev, indi_prev = torch.max(F.cosine_similarity(new_fact[:-1].view(1,-1).expand(new_facts[:,:-1].size()),new_facts[:,:-1]),0)
-                if max_prev.data[0] < 0.9: 
-                    new_facts = torch.cat(( new_facts, new_fact.view(1,-1) ),0)
+                targ = new_fact
+                score = F.cosine_similarity(targ[:num_feat_predicates].expand(new_facts[:,:num_feat_predicates].size()),new_facts[:,:num_feat_predicates])
+                score *= F.cosine_similarity(targ[num_feat_predicates:num_feat_predicates+num_feat_constants].expand(\
+                     new_facts[:,num_feat_predicates:num_feat_predicates+num_feat_constants].size()),new_facts[:,num_feat_predicates:num_feat_predicates+num_feat_constants])
+                score *= F.cosine_similarity(targ[num_feat_predicates+num_feat_constants:-1].expand(\
+                     new_facts[:,num_feat_predicates+num_feat_constants:-1].size()),new_facts[:,num_feat_predicates+num_feat_constants:-1])
+                max_prev, indi_prev = torch.max(score,0)
+                if max_prev.data[0] < 0.98: 
+                    new_facts = torch.cat((new_facts, new_fact.view(1,-1) ),0)
                 elif p.data[0] > new_facts[indi_prev.data[0],-1].data[0]:
                     new_facts[indi_prev.data[0]] = new_fact
-
-    _ , index = torch.topk(new_facts[:,-1], K)
+    K_aux = int(torch.min(torch.Tensor([K,new_facts.size()[0]])))
+    _ , index = torch.topk(new_facts[:,-1], K_aux)
     index, _ = torch.sort(index)
     new_facts = torch.index_select(new_facts, 0, index)
     return new_facts
         
 ####TRAINING
-num_iters = 100
-learning_rate = .5
-lambda_neg = 0.01
+num_iters = 200
+learning_rate = .01
+learning_rate_rules = .1
+lambda_neg = 0.1
+lambda_extra= 1.
+lambda_rep = .1
+advantage = 0.00
+
 lambda_sparse = 0.  #01
-lambda_rep = 0. #1.
+
 drop=0
 
 steps = 2
 num_rules = 2
 epsilon=.001
 
-K = 50 ##For top K
+K = 34 ##For top K
 num_core = 20
-
 
 
 ###Embeddings
 #constants = Variable(torch.eye(num_constants), requires_grad=True)
-#predicates = Variable(torch.eye(num_predicates), requires_grad=True)
-constants = Variable(torch.rand(14,num_constants), requires_grad=True)
-predicates = Variable(torch.rand(2,num_predicates), requires_grad=True)
+predicates = Variable(torch.eye(num_predicates), requires_grad=True)
+#constants = Variable(torch.rand(14,num_constants), requires_grad=True)
+constants = Variable(nn.init.orthogonal(torch.Tensor(num_constants,num_constants)), requires_grad=True)
+#predicates = Variable(torch.rand(2,num_predicates), requires_grad=True)
+
 knowledge_order, _ = generate_target(predicates, constants) 
+num_feat_predicates= predicates.size()[1]
+num_feat_constants = constants.size()[1]
+num_feat_facts = predicates.size()[1] + 2*constants.size()[1]
 
-core_rel = Variable(knowledge_order.narrow(0,0,num_core).data, requires_grad=True)
-#core_rel = Variable(torch.rand(num_core+sparse_core, num_feat_facts), requires_grad=True)
+#core_rel = Variable(knowledge_order.narrow(0,0,num_core).data, requires_grad=True)
+core_rel = Variable(torch.rand(num_core, num_feat_facts), requires_grad=True)
 
-pdb.set_trace()
 rule1 = torch.Tensor([1,0,1,0,1,0]).view(1,-1)
 rule2 = torch.Tensor([0,1,1,0,0,1]).view(1,-1)
 rules = Variable(torch.cat((rule1,rule2),0), requires_grad=True)
 #rules = Variable(torch.rand(num_rules,3*num_rules), requires_grad=True)
 
 optimizer = torch.optim.Adam([
-        #{'params': [rules]},
-        #{'params': [core_rel]},
-        {'params': [constants, predicates]}
+        #{'params': [rules], 'lr': learning_rate_rules},
+        {'params': [core_rel]},
+        {'params': [constants]}
+        #{'params': [predicates]}
     ], lr = learning_rate)
 
 criterion = torch.nn.MSELoss(size_average=False)
-
-num_feat_predicates= predicates.size()[1]
-num_feat_constants = constants.size()[1]
-num_feat_facts = predicates.size()[1] + 2*constants.size()[1]
 
 for epoch in range(num_iters):
     ##For dropout only
@@ -177,12 +184,18 @@ for epoch in range(num_iters):
         training= False
 
     ##Weight Clipping
+    #predicates = F.softmax(predicates, dim=1)
+    #constants = F.softmax(constants, dim=1)
+    #qn = torch.norm(constants, p=2, dim=1).detach()
+    #constants = constants.div(qn.expand_as(constants))
     for par in optimizer.param_groups:
         for param in par['params']:
             param.data.clamp_(min=0.,max=1.)
 
-    print(rules)
-    print(torch.round(rules))
+    #print('rules:',rules)
+    #print('predicates:',predicates)
+    #print('core_rel',core_rel[:2,:])
+    print(constants[0:5,0:5])
 
     ###Generate target
     target, target_neg = generate_target(predicates, constants)         
@@ -196,34 +209,68 @@ for epoch in range(num_iters):
     ##### Visualize
     visualize = visualize_facts(facts, predicates,constants)
     visualize_neg = visualize_facts(target_neg, predicates, constants)
+
+    ##### LOSS
     #loss = criterion(facts[:num_core,:-1], target[:num_core,:])
     loss = Variable(torch.Tensor([0]))
+    ##WITH Attention
+    #for targ in target[:,:]:
+    #    score = F.cosine_similarity(targ[:num_feat_predicates].expand(facts[:,:num_feat_predicates].size()),facts[:,:num_feat_predicates])
+    #    score *= F.cosine_similarity(targ[num_feat_predicates:num_feat_predicates+num_feat_constants].expand(\
+    #          facts[:,num_feat_predicates:num_feat_predicates+num_feat_constants].size()),facts[:,num_feat_predicates:num_feat_predicates+num_feat_constants])
+    #    score *= F.cosine_similarity(targ[num_feat_predicates+num_feat_constants:].expand(\
+    #          facts[:,num_feat_predicates+num_feat_constants:-1].size()),facts[:,num_feat_predicates+num_feat_constants:-1])
+    #    attention_w = F.normalize(score,dim=0)
+    #    #attention_w = F.softmax(score)
+    #    auxi = Variable(torch.cat((torch.zeros(num_core),advantage*torch.ones(facts.size()[0]-num_core)),0))
+    #    attention_w += auxi
+    #    loss += torch.sum(attention_w*(1-score)/(facts[:,-1]+epsilon))
+    ##WITH MAX
     for targ in target[:,:]:
         _, indi = torch.max(F.cosine_similarity(targ.view(1,-1).expand(facts[:,:-1].size()),facts[:,:-1]),0)
         indi=indi.data[0]
+        #loss += 1/(facts[indi,-1]+epsilon) 
         loss += F.mse_loss(facts[indi,:-1],targ,size_average=False)/(facts[indi,-1]+epsilon)
+    loss_pos = loss.clone() 
 
-    ##### Negative_loss 
+    ##### NEGATIVE LOSS 
     loss_neg = Variable(torch.Tensor([0]))
+    ##With Attention
+    #for targ in target_neg[:,:]:
+    #    score = F.cosine_similarity(targ[:num_feat_predicates].expand(facts[:,:num_feat_predicates].size()),facts[:,:num_feat_predicates])
+    #    score *= F.cosine_similarity(targ[num_feat_predicates:num_feat_predicates+num_feat_constants].expand(\
+    #          facts[:,num_feat_predicates:num_feat_predicates+num_feat_constants].size()),facts[:,num_feat_predicates:num_feat_predicates+num_feat_constants])
+    #    score *= F.cosine_similarity(targ[num_feat_predicates+num_feat_constants:].expand(\
+    #          facts[:,num_feat_predicates+num_feat_constants:-1].size()),facts[:,num_feat_predicates+num_feat_constants:-1])
+    #    #attention_w = F.normalize(score,dim=0)
+    #    #attention_w = F.softmax(score)
+    #    loss_neg += torch.sum(score*facts[:,-1])
+    ##With MAX
     for targ_indi in range(target_neg.size()[0]):
         equals, facts_indi = torch.max(torch.sum(visualize_neg[targ_indi].expand(visualize.size()) == visualize,1),0)
         if equals.data[0] == 3:
             simi = 1-F.mse_loss(target_neg[targ_indi,:].view(1,-1),facts[facts_indi.data[0],:-1].view(1,-1))
             print('neg_simi:target,learned_fact', targ_indi, facts_indi.data[0],facts[facts_indi.data[0],-1].data[0])
             simi = torch.max(simi,Variable(torch.Tensor([0])))  
+            #loss_neg += facts[facts_indi.data[0],-1]   
             loss_neg += simi*facts[facts_indi.data[0],-1]
     loss += lambda_neg*loss_neg
-
-    #for core_indi in range(num_core):
-    #    auxi =  torch.sum(visualize[core_indi].expand(visualize[:num_core,:].size()) == visualize[:num_core,:],1)
-    #    auxi[core_indi] = 0
-    #    equals, facts_indi = torch.max(auxi,0)
-    #    if equals.data[0] == 3:
-    #        print("falle")
-    #        simi = 1-F.mse_loss(facts[core_indi,:-1].view(1,-1),facts[facts_indi.data[0],:-1].view(1,-1))
-    #        simi = torch.max(simi,Variable(torch.Tensor([0])))
-    #        loss += lambda_rep*simi
     
+
+    ###Loss for repetitions of core
+    loss_rep = Variable(torch.Tensor([0]))
+    for core_indi in range(facts.size()[0]):
+        auxi =  torch.sum(visualize[core_indi].expand(visualize[:,:].size()) == visualize[:,:],1)  ##visualize([:num_core,:],1)
+        auxi[core_indi] = 0
+        equals, facts_indi = torch.max(auxi,0)
+        if equals.data[0] == 3:
+            print("falle")
+            simi = 1-F.mse_loss(facts[core_indi,:-1].view(1,-1),facts[facts_indi.data[0],:-1].view(1,-1))
+            simi = torch.max(simi,Variable(torch.Tensor([0])))
+            loss_rep += simi
+    loss += lambda_rep*loss_rep
+
+
     ###For Sparse case, just make sure it doesnt repeat:
     #for sparse_indi in range(sparse_core):
     #    equals, facts_indi = torch.max(torch.sum(visualize[num_core+sparse_indi].expand(visualize[:num_core,:].size()) == visualize[:num_core,:],1),0)
@@ -232,15 +279,19 @@ for epoch in range(num_iters):
     #        simi = 1-F.mse_loss(facts[num_core+sparse_indi,:-1].view(1,-1),facts[facts_indi.data[0],:-1].view(1,-1))
     #        simi = torch.max(simi,Variable(torch.Tensor([0])))
     #        loss += lambda_sparse*simi
+    #loss_extra = F.cosine_similarity(predicates[0].view(1,-1),predicates[1].view(1,-1))
+    loss_extra1 = torch.norm(torch.mm(predicates,predicates.transpose(0,1)) - Variable(torch.eye(num_feat_predicates)))
+    loss_extra = loss_extra1 + torch.norm(torch.mm(constants,constants.transpose(0,1)) - Variable(torch.eye(num_feat_constants))) 
+    loss += lambda_extra*loss_extra    
 
-
-    print(epoch, 'losssssssssssssssssssss',loss.data[0], 'neg', loss_neg.data[0])
+    print(epoch, 'losssssssssssssssssssss',loss.data[0], 'pos', loss_pos.data[0], 'neg', loss_neg.data[0], 'rep', loss_rep.data[0], 'ext',loss_extra.data[0])
     #pdb.set_trace()
     loss.backward(retain_graph=True)
     optimizer.step()
 #### VISUALIZE LEARNED FACTS and RULES
 data_aux = torch.cat((visualize.type(torch.FloatTensor),facts[:,-1].contiguous().view(-1,1)),1)
-print('rules', rules, torch.round(rules))
+
+print('rules', rules, 'predicates', predicates)
 print('facts',data_aux)
 
 pdb.set_trace()

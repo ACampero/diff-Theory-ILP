@@ -11,32 +11,43 @@ import pdb
 
 
 ##------DATA--------
-num_constants = 11
+num_constants = 9
 background_predicates =[0,1]
 intensional_predicates=[2,3]
 
 ##Background Knowledge
-zero_extension = torch.zeros(1,num_constants).view(-1,1)
-zero_extension[0,0] = 1
-succ_extension = torch.eye(num_constants-1,num_constants-1)
-succ_extension = torch.cat((torch.zeros(num_constants-1,1),succ_extension),1)
-succ_extension = torch.cat((succ_extension,torch.zeros(1,num_constants)),0)
+father_extension = torch.zeros(num_constants, num_constants)
+father_extension[0,1] = 1
+father_extension[0,2] = 1
+father_extension[1,3] = 1
+father_extension[1,4] = 1
+
+mother_extension = torch.zeros(num_constants, num_constants)
+mother_extension[8,0] = 1
+mother_extension[2,5] = 1
+mother_extension[2,6] = 1
+mother_extension[5,7] = 1
 
 #Intensional Predicates
 aux_extension = torch.zeros(num_constants,num_constants)
-even_extension = torch.zeros(1,num_constants).view(-1,1)
+target_extension = torch.zeros(num_constants,num_constants)
+
+valuation_init = [Variable(father_extension), Variable(mother_extension), Variable(aux_extension), Variable(target_extension)]
+
 
 ##Target
-target = Variable(torch.zeros(1,num_constants)).view(-1,1)
-steps = 6
-even = [0,2,4,6,8,10]
-for integer in even:
-    target[integer,0]=1
+steps = 4
+target = Variable(torch.zeros(num_constants,num_constants))
+target[8,1] =1
+target[8,2] =1
+target[0,3] =1
+target[0,4] =1
+target[0,5] =1
+target[0,6] =1
+target[2,7] =1
 
 num_rules = 3
-rules_str = [1,2,3]
-
-
+rules_str = [3,5,5]
 
 ## 1 F(x) <-- F(X)
 ## 2 F(x)<---F(Z),F(Z,X)
@@ -45,12 +56,6 @@ rules_str = [1,2,3]
 ## 5 F(X,Y) <-- F(X,Y)
 ## 8 F(X,X) <-- F(X)
 
-
-
-
-
-##Valuation
-valuation_init = [Variable(zero_extension), Variable(succ_extension), Variable(aux_extension), Variable(even_extension)]
 num_predicates= len(valuation_init)
 num_intensional_predicates = len(intensional_predicates)
 num_feat = num_predicates
@@ -140,8 +145,8 @@ learning_rate = .1
 embeddings = Variable(torch.eye(4), requires_grad=True)
 
 rules = Variable(torch.rand(num_rules, num_feat*3), requires_grad=True)
-#rule1 = torch.Tensor([0,0,0,1,1,0,0,0,0,1,0,0]).view(1,-1)
-#rule2 = torch.Tensor([0,0,0,1,0,0,0,1,0,0,1,0]).view(1,-1)
+#rule1 = torch.Tensor([0,0,0,1,0,0,1,0,0,0,1,0]).view(1,-1)
+#rule2 = torch.Tensor([0,0,1,0,1,0,0,0,0,0,1,0]).view(1,-1)
 #rule3 = torch.Tensor([0,0,1,0,0,1,0,0,0,1,0,0]).view(1,-1)
 #rules = Variable(torch.cat((rule1,rule2,rule3),0), requires_grad=True)
 
