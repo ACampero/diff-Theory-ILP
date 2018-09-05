@@ -324,9 +324,9 @@ num_feat = num_predicates
 ##------FORWARD CHAINING------
 def decoder_efficient(valuation, step):
     ##Unifications
-    rules_aux = torch.cat((rules[:,:num_feat],rules[:,num_feat:2*num_feat],rules[:,2*num_feat:3*num_feat]),0)
+    rules_aux = torch.cat((noisy_rules[:,:num_feat], noisy_rules[:,num_feat:2*num_feat], noisy_rules[:,2*num_feat:3*num_feat]),0)
     rules_aux = rules_aux.repeat(num_predicates,1)
-    embeddings_aux = embeddings.repeat(1,num_rules*3).view(-1,num_feat)    
+    embeddings_aux = noisy_embeddings.repeat(1,num_rules*3).view(-1,num_feat)    
     unifs = F.cosine_similarity(embeddings_aux, rules_aux).view(num_predicates,-1)
     #unifs = F.pairwise_distance(embeddings_aux, rules_aux).view(num_predicates,-1)
     #unifs = torch.exp(-unifs)
@@ -459,11 +459,17 @@ def amalgamate(x,y):
     return x + y - x*y
 
 ##------SETUP------
-num_iters = 100
+num_iters = 1200
 learning_rate = .1
 learning_rate_rules1=.1
 learning_rate_rules2=.05
 learning_rate_rules3=.01
+hyper_epsilon = .0
+hyper_epoch = 30
+
+hyper_epsilon_r = 1.50
+hyper_epoch_r = 60
+
 
 
 
@@ -489,6 +495,17 @@ criterion = torch.nn.BCELoss(size_average=False)
 
 ##-------TRAINING------
 for epoch in range(num_iters):
+    if epoch%hyper_epoch == 0:
+        hyper_epsilon = hyper_epsilon/2.
+    if epoch%hyper_epoch_r == 0:
+        hyper_epsilon_r = hyper_epsilon_r*.7
+
+    epsilon = torch.randn(rules.size())
+    noisy_rules = rules + hyper_epsilon_r*epsilon
+
+    epsilon_emb = torch.randn(embeddings.size())
+    noisy_embeddings = embeddings + hyper_epsilon*epsilon_emb
+
     for par in optimizer.param_groups[:]:
         for param in par['params']:
             param.data.clamp_(min=0.0,max=1.0)
