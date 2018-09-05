@@ -194,6 +194,7 @@ steps = 7
 num_rules = 3
 rules_str = [8,3,3]
 
+
 ################## Undirected Edge
 ##------DATA--------
 background_predicates =[0]
@@ -604,11 +605,11 @@ def amalgamate(x,y):
 
 
 ##------SETUP------
-num_iters = 401
+num_iters = 1201
 learning_rate = .1
-hyper_epsilon = 0.99
-hyper_epoch = 50
-
+hyper_epsilon_r = 1.5
+hyper_epoch_r = 60
+hyper_decay_r = .8
 #embeddings = Variable(torch.rand(num_predicates, num_feat), requires_grad=True)
 embeddings = Variable(torch.eye(num_feat), requires_grad=True)
 
@@ -626,12 +627,19 @@ criterion = torch.nn.BCELoss(size_average=False)
 ##-------TRAINING------
 #m=torch.distributions.Bernoulli(torch.Tensor(target.size))
 for epoch in range(num_iters):
-    if epoch%hyper_epoch == 0:
-	hyper_epsilon = hyper_epsilon/2.
+    if epoch%hyper_epoch_r == 0:
+	hyper_epsilon_r = hyper_epsilon_r*hyper_decay_r
     epsilon = torch.randn(rules.size())
-    epsilon_emb = torch.randn(embeddings.size())
-    noisy_embeddings = embeddings + hyper_epsilon*epsilon_emb
-    noisy_rules = rules + hyper_epsilon*epsilon
+    noisy_rules = rules + hyper_epsilon_r*epsilon
+
+
+    noisy_rules = noisy_rules.detach().clamp_(min=0.0,max=1.0)
+
+    noisy_rules = noisy_rules - rules.detach() + rules
+
+    #epsilon_emb = torch.randn(embeddings.size())
+    noisy_embeddings = embeddings #+ hyper_epsilon*epsilon_emb
+
 
     for par in optimizer.param_groups[:]:
         for param in par['params']:
